@@ -2,7 +2,9 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import geopandas    
-
+import geoviews as gv
+from cartopy import crs
+gv.extension('bokeh')
 
 def death_vs_gdp(natural_disaster_df, gdp_df):
     """
@@ -35,20 +37,18 @@ def major_disaster_distribution(natural_disaster_df):
     took place
     """
     assert isinstance(natural_disaster_df, pd.DataFrame)
- 
     # Do a count over the country
     country_count = natural_disaster_df.groupby('ISO').count()['Year']
     # Import the geopandas map
     world = geopandas.read_file(geopandas.datasets.get_path('naturalearth_lowres'))
+    
     # Avoid same column name problem
     country_count = pd.DataFrame(country_count).rename(columns = {'Year':'Year_2'})
     country_count['inde'] = country_count.index
     # Plot the count on the map
     world = world.merge(country_count, left_on = 'iso_a3', right_on = 'inde', how = 'left').fillna(0)
-    ax = world.plot(column = 'Year_2',cmap='Blues', figsize=(18,8), legend = True,legend_kwds={'label': "Number of Events that Caused over 5000 Deaths"})
-    ax.set_title('Disasters with over 5000 Deaths Geological Distribution')
-    ax.set_axis_off()
-    plt.show()
-    return
-
+    ax = gv.Polygons(world, vdims =[('Year_2','# disasters'), ('name','Country'),]).opts(
+        tools=['hover'], width=600,height=500, #projection=crs.Robinson()
+    )
+    return ax
 
