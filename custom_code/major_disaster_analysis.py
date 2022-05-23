@@ -8,10 +8,18 @@ gv.extension('bokeh')
 
 def death_vs_gdp(natural_disaster_df, gdp_df):
     """
-    :natural_disaster_df The natural disaster dataframe
-    :gdp_df The GAP per capita dataframe
     Plots a graph that shows the Total Death counts vs the GDP per capita value
-    for disasters that caused over 5000 deaths
+    for disasters that caused over 5000 deaths.
+    
+    **:natural_disaster_df: pd.DataFrame**
+        The natural disaster dataframe.
+    
+    
+    **:gdp_df: pd.DataFrame**
+        The GDP per capita dataframe
+        
+    
+    **Returns: None**
     """
     assert isinstance(natural_disaster_df, pd.DataFrame)
     assert isinstance(gdp_df, pd.DataFrame)
@@ -32,9 +40,12 @@ def death_vs_gdp(natural_disaster_df, gdp_df):
 
 def major_disaster_distribution(natural_disaster_df):
     """
-    :natural_disaster_df The natural disaster dataframe
-    Plots a world map that displays the density of the countries that major disasters
-    took place
+    Plots a world map that displays the density of the countries that major disasters took place.
+    
+    **:natural_disaster_df: pd.DataFrame**
+        The natural disaster dataframe
+    
+    **Returns: gv.Polygons object**
     """
     assert isinstance(natural_disaster_df, pd.DataFrame)
     # Do a count over the country
