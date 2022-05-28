@@ -74,6 +74,15 @@ def map_distribution_cases(natural_disaster_df):
     function to handle multiple cases to combine multiple visualizations into one.
     """
     assert isinstance(natural_disaster_df, pd.DataFrame)
+    selector_opts = {
+        '# Disasters':{'dep_var':'Year', "dep_var_2":'Year_2','feature_name':'# Disasters','group_op':'count'},
+        '# Deaths':{'dep_var':'Total Deaths', "dep_var_2":'TD_2','feature_name':'# Deaths','group_op':'sum'},
+        '# Injured':{'dep_var':'No Injured','dep_var_2':'num_inj','feature_name':'# Injured','group_op':'sum'},
+        '# Affected':{'dep_var':'No Affected','dep_var_2':'num_aff','feature_name':'# Affected','group_op':'sum'},
+        '# Homeless':{'dep_var':'No Homeless','dep_var_2':'num_homeless','feature_name':'# Homeless','group_op':'sum'},
+        'Reconstruction Costs':{'dep_var':'Reconstruction Costs (\'000 US$)','dep_var_2':'num_recon_costs','feature_name':'Reconstruction Costs','group_op':'sum'},
+        'Total Damanges':{'dep_var':'Total Damages (\'000 US$)','dep_var_2':'num_damages','feature_name':'Total Damanges','group_op':'sum'},
+    }
     def major_disaster_map(start_time,end_time,vis_type=None):
         scale = 3/2+1/7
         width=int(300*scale)
@@ -81,52 +90,67 @@ def map_distribution_cases(natural_disaster_df):
         
         restricted_df = natural_disaster_df[(start_time.year<=natural_disaster_df['Year']) &
                                             (natural_disaster_df['Year']<=end_time.year)]
-        if vis_type == '# of Disasters':
-            
-            country_var = restricted_df.groupby('ISO')['Year'].count()
-            dep_var = 'Year'
-            dep_var_2 = 'Year_2'
-            feature_name = '# of Disasters'
-            
-        elif vis_type=='# of Deaths':
-            #calcualte the total number of deaths from all disasters within the restricted time period
-            country_var = restricted_df.groupby('ISO')['Total Deaths'].sum()
-            dep_var = 'Total Deaths'
-            dep_var_2 = 'TD_2'
-            feature_name = '# of Deaths'
-            pass
-        else:
-            return None
+        grouped = restricted_df.groupby('ISO')
+        country_var_dict = {}
+        for i in selector_opts.keys():
+            if selector_opts[i]['group_op']=='sum':
+                country_var_dict[selector_opts[i]['dep_var']] = grouped[selector_opts[i]['dep_var']].sum()
+            elif selector_opts[i]['group_op']=='count':
+                country_var_dict[selector_opts[i]['dep_var']] = grouped[selector_opts[i]['dep_var']].count()
         
         # Import the geopandas map
         world = geopandas.read_file(geopandas.datasets.get_path('naturalearth_lowres'))
 
         # Avoid same column name problem
-        country_var = pd.DataFrame(country_var).rename(columns = {dep_var:dep_var_2})
+        columns_names = {selector_opts[vis_type_temp]['dep_var']:selector_opts[vis_type_temp]['dep_var_2'] 
+                         for vis_type_temp in selector_opts.keys()}
+        
+        country_var = pd.DataFrame(data=country_var_dict).rename(
+            columns = columns_names
+        )
         country_var['inde'] = country_var.index
         # Plot the count on the map
         world = world.merge(country_var, left_on = 'iso_a3', right_on = 'inde', how = 'left').fillna(0)
-        ax = gv.Polygons(world, vdims =[(dep_var_2,feature_name), ('name','Country'),]).opts(
-            tools=['hover'], width=width,height=height, #projection=crs.Robinson()
+        keyDims = [(selector_opts[vis_type_temp]['dep_var_2'],selector_opts[vis_type_temp]['feature_name'])
+                         for vis_type_temp in selector_opts.keys()]
+        keyDims = [('name','Country')]+ keyDims
+        ax = gv.Polygons(world, vdims =keyDims).opts(
+            tools=['hover'], 
+            width=width,
+            height=height, 
+            color_index=selector_opts[vis_type]['dep_var_2'],
+            title="Where are disasters concentrated?"
         )
-
-        bar = hv.Bars(country_var.sort_values(dep_var_2,ascending=False).iloc[:10],('inde','Country'),(dep_var_2,feature_name)).opts(
-            tools=['hover'], width=width,height=height, xrotation=70
+        bar = hv.Bars(country_var.sort_values(selector_opts[vis_type]['dep_var_2'],
+                      ascending=False).iloc[:10],
+                      ('inde','Country'),
+                      (selector_opts[vis_type]['dep_var_2'],selector_opts[vis_type]['feature_name'])).opts(
+            tools=['hover'],
+            width=width,
+            height=height, 
+            xrotation=70,
+            title="Which countries are affected the most?"
         )
-
+        
         return ax+bar
         
     min_date = dt.datetime(natural_disaster_df['Year'].min(),1,1)
     max_date = dt.datetime(natural_disaster_df['Year'].max()+1,1,1)
     dateslider= pn.widgets.DateRangeSlider(start=min_date,end=max_date,value=(min_date,max_date),name='Year Range')
-    selector = pn.widgets.Select(options=['# of Disasters','# of Deaths', 'Predicted Blank 2'], name='What to see?')
+    selector = pn.widgets.Select(options=list(selector_opts.keys()), name='What to see?')
     
     streams = dict(start_time=dateslider.param.value_start,
                    end_time=dateslider.param.value_end,
                    vis_type=selector.param.value)
     
     
-    widget_dmap = hv.DynamicMap(major_disaster_map, streams=streams)
-    widget_dmap.opts(height=100)
-    return pn.Column(pn.Row(dateslider,selector),widget_dmap)
-
+#     widget_dmap = hv.DynamicMap(major_disaster_map, streams=streams)
+    widget_dmap = hv.DynamicMap(pn.bind(major_disaster_map, start_time=dateslider.param.value_start,
+                   end_time=dateslider.param.value_end,
+                   vis_type=selector.param.value))
+    widget_dmap.opts(height=100,framewise=True)
+    
+    description = pn.pane.Markdown('''
+    # Where are disasters happening?
+    ''')
+    return pn.Column(description,pn.Row(dateslider,selector),widget_dmap)
