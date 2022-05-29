@@ -157,4 +157,4 @@ def map_distribution_cases(natural_disaster_df):
     description = pn.pane.Markdown('''
     # Where are disasters happening?
     ''')
-    return pn.Column(description,pn.Row(dateslider,selector),widget_dmap)
+    return pn.ipywidget(pn.Column(description,pn.Row(dateslider,selector),widget_dmap))
