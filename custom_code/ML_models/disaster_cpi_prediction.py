@@ -12,14 +12,14 @@ gv.extension("bokeh")
 
 def plot_worldwide_choroplethmap(df, title_name):
     """
-    Func plot_interactive_sacttermap is designed to plot earthquake locations worldwide scatter map.
+    Plot earthquake locations worldwide scatter map.
 
-    Attributes:
-    df(pd.DataFrame): Dataset with 'country_name' and 'CPI' info
-    title_name(str): Plot title name
+    **:df: pd.DataFrame:**
+        Dataset with 'country_name' and 'CPI' info.
+    **:title_name: str:**
+        Plot title name.
 
-    Returns:
-    Worldwide Choropleth Map
+    Returns: gv.Polygons object
     """
 
     # WorldMap Background
@@ -35,14 +35,15 @@ def plot_worldwide_choroplethmap(df, title_name):
 # Worldwide disaster CPI Prediction
 def one_hot_encode(df, name):
     """
-    Func one_hot_encode is designed to do one-hot encoding.
+    Do one-hot enconding on dataframe columns.
     
-    Attributes:
-    df(pd.DataFrame): Dataset we use
-    name(str): One-hot encoding target
+    **:df: pd.DataFrame:**
+        Total dataset.
+    **:title_name: str:**
+        One-hot encoding target.
+        
 
-    Returns:
-    encoder_df(pd.DataFrame): One-hot encoding results
+    Returns: pd.DataFrame
     """
     assert isinstance(df, pd.DataFrame)
     assert isinstance(name, str)
@@ -54,14 +55,12 @@ def one_hot_encode(df, name):
 
 def prepare_worldwide_disaster_data(file_name = '1970-2022_DISASTERS.xlsx - emdat data.csv'):
     """
-    Func prepare_worldwide_disaster_data is designed to make preparation and feature extraction.
+    Do dataset extraction and preparation for model-building. Returns tuple of cleaned dataframe and feature list.
+    
+    **:file_name: str**
+        File path for .csv dataset.
 
-    Attributes:
-    file_name(str): file_path
-
-    Returns:
-    df_final(pd.DataFrame): Dataset ready to do ML model
-    features(list): What we extraction from original dataset
+    Returns: (pd.DataFrame, list)
     """
     #df = pd.read_csv ('./datasets/1970-2022_DISASTERS.xlsx - emdat data.csv')
     # Pretreatment
@@ -117,18 +116,20 @@ def prepare_worldwide_disaster_data(file_name = '1970-2022_DISASTERS.xlsx - emda
 
 def predict_cpi_model(df, features, year=2023, month=7, disaster='Wildfire'):
     """
-    Func predict_cpi_model is designed to find CPI of a specific disaster type  across the world in the future.
-
-    Attributes:
-    df(pd.DataFrame): Dataset after preparation and feature extraction
-    featrues(list): Feature extraction
-    year(int): One in the future
-    month(int): One in the future
-    disaster(str): One type from ['Earthquake', 'Extreme temperature', 'Flood', 'Landslide', 'Storm', 'Wildfire']
-
-    Returns:
-    df_preds(pd.DataFrame): [country_name, CPI]
-    title_name(str): Title of the plot
+    Finds CPI of a specific disaster type across the world in the future. Returns prediction dataframe (country_name, CPI) and title of plot.
+    
+    **:df: pd.DataFrame**
+        Dataset after preparation and feature extraction.
+    **:features: list**
+        Feature extraction list.
+    **:year: int**
+        Year for inference.
+    **:month: int**
+        Month for inference.
+    **:disaster: str**
+        One type from ['Earthquake', 'Extreme temperature', 'Flood', 'Landslide', 'Storm', 'Wildfire'].
+    
+    Returns: (pd.DataFrame, str)
     """
     assert isinstance(df, pd.DataFrame)
     assert isinstance(features, list)

@@ -68,10 +68,14 @@ def major_disaster_distribution(natural_disaster_df):
 
 def map_distribution_cases(natural_disaster_df):
     """
-    :natural_disaster_df The natural disaster dataframe
     Plots a world map that displays the density of the countries that major disasters
     took place. Can also display multiple types of dependent features. Expand on this
     function to handle multiple cases to combine multiple visualizations into one.
+    
+    **:natural_disaster_df: pd.DataFrame**
+        The natural disaster dataframe
+    
+    **Returns: None**
     """
     assert isinstance(natural_disaster_df, pd.DataFrame)
     selector_opts = {

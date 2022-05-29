@@ -135,6 +135,11 @@
      Disaster Analysis
     </a>
    </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#module-custom_code.ML_models.disaster_cpi_prediction">
+     Machine Learning Models
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
@@ -197,6 +202,151 @@ for disasters that caused over 5000 deaths.</p>
 </dd>
 </dl>
 <p><strong>Returns: gv.Polygons object</strong></p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="custom_code.major_disaster_analysis.map_distribution_cases">
+<span class="sig-prename descclassname"><span class="pre">custom_code.major_disaster_analysis.</span></span><span class="sig-name descname"><span class="pre">map_distribution_cases</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">natural_disaster_df</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#custom_code.major_disaster_analysis.map_distribution_cases" title="Permalink to this definition">#</a></dt>
+<dd><p>Plots a world map that displays the density of the countries that major disasters
+took place. Can also display multiple types of dependent features. Expand on this
+function to handle multiple cases to combine multiple visualizations into one.</p>
+<dl class="simple">
+<dt><strong>:natural_disaster_df: pd.DataFrame</strong></dt><dd><p>The natural disaster dataframe</p>
+</dd>
+</dl>
+<p><strong>Returns: None</strong></p>
+</dd></dl>
+
+</section>
+<section id="module-custom_code.ML_models.disaster_cpi_prediction">
+<span id="machine-learning-models"></span><h2>Machine Learning Models<a class="headerlink" href="#module-custom_code.ML_models.disaster_cpi_prediction" title="Permalink to this headline">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="custom_code.ML_models.disaster_cpi_prediction.one_hot_encode">
+<span class="sig-prename descclassname"><span class="pre">custom_code.ML_models.disaster_cpi_prediction.</span></span><span class="sig-name descname"><span class="pre">one_hot_encode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#custom_code.ML_models.disaster_cpi_prediction.one_hot_encode" title="Permalink to this definition">#</a></dt>
+<dd><p>Do one-hot enconding on dataframe columns.</p>
+<dl class="simple">
+<dt><strong>:df: pd.DataFrame:</strong></dt><dd><p>Total dataset.</p>
+</dd>
+<dt><strong>:title_name: str:</strong></dt><dd><p>One-hot encoding target.</p>
+</dd>
+</dl>
+<p>Returns: pd.DataFrame</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="custom_code.ML_models.disaster_cpi_prediction.plot_worldwide_choroplethmap">
+<span class="sig-prename descclassname"><span class="pre">custom_code.ML_models.disaster_cpi_prediction.</span></span><span class="sig-name descname"><span class="pre">plot_worldwide_choroplethmap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#custom_code.ML_models.disaster_cpi_prediction.plot_worldwide_choroplethmap" title="Permalink to this definition">#</a></dt>
+<dd><p>Plot earthquake locations worldwide scatter map.</p>
+<dl class="simple">
+<dt><strong>:df: pd.DataFrame:</strong></dt><dd><p>Dataset with ‘country_name’ and ‘CPI’ info.</p>
+</dd>
+<dt><strong>:title_name: str:</strong></dt><dd><p>Plot title name.</p>
+</dd>
+</dl>
+<p>Returns: gv.Polygons object</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="custom_code.ML_models.disaster_cpi_prediction.predict_cpi_model">
+<span class="sig-prename descclassname"><span class="pre">custom_code.ML_models.disaster_cpi_prediction.</span></span><span class="sig-name descname"><span class="pre">predict_cpi_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2023</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">month</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">disaster</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Wildfire'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#custom_code.ML_models.disaster_cpi_prediction.predict_cpi_model" title="Permalink to this definition">#</a></dt>
+<dd><p>Finds CPI of a specific disaster type across the world in the future. Returns prediction dataframe (country_name, CPI) and title of plot.</p>
+<dl class="simple">
+<dt><strong>:df: pd.DataFrame</strong></dt><dd><p>Dataset after preparation and feature extraction.</p>
+</dd>
+<dt><strong>:features: list</strong></dt><dd><p>Feature extraction list.</p>
+</dd>
+<dt><strong>:year: int</strong></dt><dd><p>Year for inference.</p>
+</dd>
+<dt><strong>:month: int</strong></dt><dd><p>Month for inference.</p>
+</dd>
+<dt><strong>:disaster: str</strong></dt><dd><p>One type from [‘Earthquake’, ‘Extreme temperature’, ‘Flood’, ‘Landslide’, ‘Storm’, ‘Wildfire’].</p>
+</dd>
+</dl>
+<p>Returns: (pd.DataFrame, str)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="custom_code.ML_models.disaster_cpi_prediction.prepare_worldwide_disaster_data">
+<span class="sig-prename descclassname"><span class="pre">custom_code.ML_models.disaster_cpi_prediction.</span></span><span class="sig-name descname"><span class="pre">prepare_worldwide_disaster_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'1970-2022_DISASTERS.xlsx</span> <span class="pre">-</span> <span class="pre">emdat</span> <span class="pre">data.csv'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#custom_code.ML_models.disaster_cpi_prediction.prepare_worldwide_disaster_data" title="Permalink to this definition">#</a></dt>
+<dd><p>Do dataset extraction and preparation for model-building. Returns tuple of cleaned dataframe and feature list.</p>
+<dl class="simple">
+<dt><strong>:file_name: str</strong></dt><dd><p>File path for .csv dataset.</p>
+</dd>
+</dl>
+<p>Returns: (pd.DataFrame, list)</p>
+</dd></dl>
+
+<span class="target" id="module-custom_code.ML_models.realtime_earthquake_prediction"></span><dl class="py function">
+<dt class="sig sig-object py" id="custom_code.ML_models.realtime_earthquake_prediction.plot_geomap">
+<span class="sig-prename descclassname"><span class="pre">custom_code.ML_models.realtime_earthquake_prediction.</span></span><span class="sig-name descname"><span class="pre">plot_geomap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#custom_code.ML_models.realtime_earthquake_prediction.plot_geomap" title="Permalink to this definition">#</a></dt>
+<dd><p>Show scatter plots on world map. Returns</p>
+<dl class="simple">
+<dt><strong>:df: pd.DataFrame:</strong></dt><dd><p>Dataframe for dataset (including ‘longitude’ and ‘latitude’ columns).</p>
+</dd>
+<dt><strong>:title: str:</strong></dt><dd><p>Title of scatter plots.</p>
+</dd>
+</dl>
+<p>Returns: None</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="custom_code.ML_models.realtime_earthquake_prediction.plot_interactive_scattermap">
+<span class="sig-prename descclassname"><span class="pre">custom_code.ML_models.realtime_earthquake_prediction.</span></span><span class="sig-name descname"><span class="pre">plot_interactive_scattermap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point_size</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#custom_code.ML_models.realtime_earthquake_prediction.plot_interactive_scattermap" title="Permalink to this definition">#</a></dt>
+<dd><p>Plot earthquake locations on worldwide scatter map.</p>
+<dl class="simple">
+<dt><strong>:df: pd.DataFrame:</strong></dt><dd><p>Dataframe for dataset (including ‘longitude’ and ‘latitude’ columns).</p>
+</dd>
+<dt><strong>:title_name: str:</strong></dt><dd><p>Title of scatter plots.</p>
+</dd>
+<dt><strong>:point_size: int:</strong></dt><dd><p>Scatter point size.</p>
+</dd>
+</dl>
+<p>Returns: None</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="custom_code.ML_models.realtime_earthquake_prediction.plot_roc">
+<span class="sig-prename descclassname"><span class="pre">custom_code.ML_models.realtime_earthquake_prediction.</span></span><span class="sig-name descname"><span class="pre">plot_roc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_depth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#custom_code.ML_models.realtime_earthquake_prediction.plot_roc" title="Permalink to this definition">#</a></dt>
+<dd><p>Create Receiver Operating Characteristic plot.</p>
+<dl class="simple">
+<dt><strong>:df: pd.DataFrame</strong></dt><dd><p>Dataset after feature extraction after getting from ‘prepare_earthquake_data’.</p>
+</dd>
+<dt><strong>:max_depth: int</strong></dt><dd><p>Max tree depth; hyperparameter for XGBoost model.</p>
+</dd>
+<dt><strong>:eta: float</strong></dt><dd><p>Step size shrinkage value for addressing overfitting; hyperparameter for XGBoost model.</p>
+</dd>
+</dl>
+<p>Returns: None</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="custom_code.ML_models.realtime_earthquake_prediction.predict_earthquake_model">
+<span class="sig-prename descclassname"><span class="pre">custom_code.ML_models.realtime_earthquake_prediction.</span></span><span class="sig-name descname"><span class="pre">predict_earthquake_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_live</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">days_out_to_predict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_depth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#custom_code.ML_models.realtime_earthquake_prediction.predict_earthquake_model" title="Permalink to this definition">#</a></dt>
+<dd><p>Perform earthquake prediction using XGBoost. Returns list of next seven days (‘yyyy-mm-dd’) and dataframe indicating most likely earthquake occurance in next seven days.</p>
+<dl class="simple">
+<dt><strong>:df: pd.DataFrame</strong></dt><dd><p>Dataset after feature extraction after getting from ‘prepare_earthquake_data’.</p>
+</dd>
+<dt><strong>:df_live: pd.DataFrame</strong></dt><dd><p>Dataset used to predict in next seven days from ‘prepare_earthquake_data’.</p>
+</dd>
+<dt><strong>:days_out_to_predict: int</strong></dt><dd><p>Rolling window size.</p>
+</dd>
+<dt><strong>:max_depth: int</strong></dt><dd><p>Max tree depth; hyperparameter for XGBoost model.</p>
+</dd>
+<dt><strong>:eta: float</strong></dt><dd><p>Step size shrinkage value for addressing overfitting; hyperparameter for XGBoost model.</p>
+</dd>
+</dl>
+<p>Returns: (list, pd.DataFrame)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="custom_code.ML_models.realtime_earthquake_prediction.prepare_earthquake_data">
+<span class="sig-prename descclassname"><span class="pre">custom_code.ML_models.realtime_earthquake_prediction.</span></span><span class="sig-name descname"><span class="pre">prepare_earthquake_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">days_out_to_predict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">7</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#custom_code.ML_models.realtime_earthquake_prediction.prepare_earthquake_data" title="Permalink to this definition">#</a></dt>
+<dd><p>Gets dataset about historical earthquakes with aggregated longitude and latitude. Returns dataset after feature extraction and dataset used to predict in next seven days.</p>
+<dl class="simple">
+<dt><strong>:dats_out_to_predict: int</strong></dt><dd><p>Rolling window size.</p>
+</dd>
+</dl>
+<p>Returns: (pd.DataFrame, pd.DataFrame)</p>
 </dd></dl>
 
 </section>

@@ -39,6 +39,15 @@ Disaster Analysis
 
 .. automodule:: custom_code.major_disaster_analysis
     :members:
+	
+Machine Learning Models
+-----------------------
+	
+.. automodule:: custom_code.ML_models.disaster_cpi_prediction
+	:members:
+	
+.. automodule:: custom_code.ML_models.realtime_earthquake_prediction
+	:members:
 
 
 

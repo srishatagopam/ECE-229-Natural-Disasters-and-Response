@@ -24,12 +24,16 @@ gv.extension("bokeh")
 
 def plot_geomap(df, title):
     """
-    Func plot_geomap is designed to show scatter plots on maps.
+    Show scatter plots on world map. Returns 
+    
+    **:df: pd.DataFrame:**
+        Dataframe for dataset (including 'longitude' and 'latitude' columns).
+    **:title: str:**
+        Title of scatter plots.
 
-    Attributes:
-    df(pd.DataFrame): Dataset we need(including 'longitude' and 'latitude' columns)
-    title(str): scatter plots title we need
+    Returns: None
     """
+
     assert isinstance(df, pd.DataFrame)
     assert isinstance(title, str)
 
@@ -49,15 +53,16 @@ def plot_geomap(df, title):
 
 def plot_interactive_scattermap(df, title_name, point_size):
     """
-    Func plot_interactive_sacttermap is designed to plot earthquake locations worldwide scatter map.
+    Plot earthquake locations on worldwide scatter map.
+    
+    **:df: pd.DataFrame:**
+        Dataframe for dataset (including 'longitude' and 'latitude' columns).
+    **:title_name: str:**
+        Title of scatter plots.
+    **:point_size: int:**
+        Scatter point size.
 
-    Attributes:
-    df(pd.DataFrame): Dataset with 'longitude' and 'latitude' info
-    title_name(str): Plot title name
-    point_size: Scatter plot point size
-
-    Returns:
-    Worldwide Scatter Map
+    Returns: None
     """
     assert isinstance(df, pd.DataFrame)
     assert isinstance(title_name, str)
@@ -82,14 +87,12 @@ def plot_interactive_scattermap(df, title_name, point_size):
 
 def prepare_earthquake_data(days_out_to_predict = 7):
     """
-    Func prepare_earthquake_data is designed to get dataset about Historical Earthquakes with Aggregated Longitude And Latitude.
-
-    Attributes:
-    days_out_to_predict(int): Rolling Windows
-
-    Returns:
-    df(pd.DataFrame): Dataset after Feature Extraction
-    df_live(pd.DataFrame): Dataset used to predict in the next 7 days
+    Gets dataset about historical earthquakes with aggregated longitude and latitude. Returns dataset after feature extraction and dataset used to predict in next seven days.
+    
+    **:dats_out_to_predict: int**
+        Rolling window size.
+    
+    Returns: (pd.DataFrame, pd.DataFrame)
     """
     # get latest data from USGS servers
     df = pd.read_csv('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.csv')
@@ -168,18 +171,21 @@ def prepare_earthquake_data(days_out_to_predict = 7):
 
 def predict_earthquake_model(df, df_live, days_out_to_predict = 7, max_depth=3, eta=0.1):
     """
-    Func predict_earthquake_model is designed to do earthquake prediction using xgboost.
+    Perform earthquake prediction using XGBoost. Returns list of next seven days ('yyyy-mm-dd') and dataframe indicating most likely earthquake occurance in next seven days.
+    
+    **:df: pd.DataFrame**
+        Dataset after feature extraction after getting from 'prepare_earthquake_data'.
+    **:df_live: pd.DataFrame**
+        Dataset used to predict in next seven days from 'prepare_earthquake_data'.
+    **:days_out_to_predict: int** 
+        Rolling window size.
+    **:max_depth: int** 
+        Max tree depth; hyperparameter for XGBoost model.
+    **:eta: float**
+        Step size shrinkage value for addressing overfitting; hyperparameter for XGBoost model.
+   
 
-    Attributes:
-    df(pd.DataFrame): Dataset after Feature Extraction getting from Func: prepare_earthquake_data
-    df_live(pd.DataFrame): Dataset used to predict in the next 7 days getting from Func: prepare_earthquake_data
-    days_out_to_predict(int): Rolling Windows
-    max_depth(int): Hyperparameter for xgboost model
-    eta(float): Learning rate of the algorithm
-
-    Returns:
-    days_new(list): List of next 7 days 'yyyy-mm-dd'
-    df_output(pd.DataFrame): Most likely earthquake occurance location prediction in next 7 days.
+    Returns: (list, pd.DataFrame)
     """
     assert isinstance(df, pd.DataFrame)
     assert isinstance(df_live, pd.DataFrame)
@@ -241,12 +247,16 @@ def predict_earthquake_model(df, df_live, days_out_to_predict = 7, max_depth=3, 
 
 def plot_roc(df, max_depth=3, eta=0.1):
     """
-    Func plot_roc is designed to find the Receiver Operating Characteristic Plot
-
-    Attributes:
-    df(pd.DataFrame): Dataset after Feature Extraction getting from Func: prepare_earthquake_data
-    max_depth(int): Hyperparameter for xgboost model
-    eta(float): Learning rate of the algorithm
+    Create Receiver Operating Characteristic plot.
+    
+    **:df: pd.DataFrame**
+        Dataset after feature extraction after getting from 'prepare_earthquake_data'.
+    **:max_depth: int** 
+        Max tree depth; hyperparameter for XGBoost model.
+    **:eta: float**
+        Step size shrinkage value for addressing overfitting; hyperparameter for XGBoost model.
+    
+    Returns: None
     """
     # Modules Import
     from sklearn.metrics import roc_curve
