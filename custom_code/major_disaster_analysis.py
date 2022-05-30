@@ -66,16 +66,19 @@ def major_disaster_distribution(natural_disaster_df):
     )
     return ax
 
-def map_distribution_cases(natural_disaster_df):
+def map_distribution_cases(natural_disaster_df, voila=True):
     """
     Plots a world map that displays the density of the countries that major disasters
-    took place. Can also display multiple types of dependent features. Expand on this
-    function to handle multiple cases to combine multiple visualizations into one.
+    took place. Can also display multiple types of dependent features. 
     
     **:natural_disaster_df: pd.DataFrame**
         The natural disaster dataframe
     
-    **Returns: None**
+    **:voila: bool**
+        Use to return plot that is visible in a notebook
+    
+    **Returns: ipywidget.widget **
+        a widget incorporating panel controlling parameters and a holoviews dynamic map
     """
     assert isinstance(natural_disaster_df, pd.DataFrame)
     selector_opts = {
@@ -123,6 +126,7 @@ def map_distribution_cases(natural_disaster_df):
             width=width,
             height=height, 
             color_index=selector_opts[vis_type]['dep_var_2'],
+            colorbar=True,
             title="Where are disasters concentrated?"
         )
         bar = hv.Bars(country_var.sort_values(selector_opts[vis_type]['dep_var_2'],
@@ -143,12 +147,6 @@ def map_distribution_cases(natural_disaster_df):
     dateslider= pn.widgets.DateRangeSlider(start=min_date,end=max_date,value=(min_date,max_date),name='Year Range')
     selector = pn.widgets.Select(options=list(selector_opts.keys()), name='What to see?')
     
-    streams = dict(start_time=dateslider.param.value_start,
-                   end_time=dateslider.param.value_end,
-                   vis_type=selector.param.value)
-    
-    
-#     widget_dmap = hv.DynamicMap(major_disaster_map, streams=streams)
     widget_dmap = hv.DynamicMap(pn.bind(major_disaster_map, start_time=dateslider.param.value_start,
                    end_time=dateslider.param.value_end,
                    vis_type=selector.param.value))
@@ -157,4 +155,7 @@ def map_distribution_cases(natural_disaster_df):
     description = pn.pane.Markdown('''
     # Where are disasters happening?
     ''')
-    return pn.ipywidget(pn.Column(description,pn.Row(dateslider,selector),widget_dmap))
+    if voila:
+        return pn.ipywidget(pn.Column(description,pn.Row(dateslider,selector),widget_dmap))
+    else:
+        return pn.Column(description,pn.Row(dateslider,selector),widget_dmap)
