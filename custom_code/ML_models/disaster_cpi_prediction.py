@@ -7,6 +7,9 @@ import xgboost as xgb
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.model_selection import train_test_split
 
+import holoviews as hv
+import panel as pn
+hv.extension('bokeh')
 gv.extension("bokeh")
 
 
@@ -26,8 +29,7 @@ def plot_worldwide_choroplethmap(df, title_name):
     world = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
     world = world[(world.name!="Antarctica")]
     
-    preds = world.merge(df, left_on='name', right_on='country_name')
-
+    preds = world.merge(df, left_on='name', right_on='country_name', how='left').fillna(0)
     img = gv.Polygons(data=preds, vdims=["CPI", "name"]).opts(height=400, width=600, title=title_name, colorbar=True, tools=['hover',], hover_color='lime')
 
     return img
@@ -174,5 +176,75 @@ def predict_cpi_model(df, features, year=2023, month=7, disaster='Wildfire'):
     return df_preds, title_name
 
 
+def cpi_prediction_module(min_date = 1950,max_date =2050,voila=True):
+    """
+    Plots a world map that displays the density of predicted CPI per country based on panel sliders
+    
+    **:min_date: Int**
+        minimum date for slider
+    
+    **:max_date: Int**
+        maxmimum date for slider
+    
+    **:voila: bool**
+        Use to return plot that is visible in a notebook
+    
+    **Returns: ipywidget.widget **
+        a widget incorporating panel controlling parameters and a holoviews dynamic map
+    """
+    
+    df_prep, features = prepare_worldwide_disaster_data(file_name = './custom_code/ML_models/1970-2022_DISASTERS.xlsx - emdat data.csv')
+    
+    def cpi_prediction_maps(year,month,disaster_type):
+        scale = 3/2+1/7
+        width=int(300*scale)
+        height=int(250*scale)
+        
+        df_pred, title_name = predict_cpi_model(df_prep, features,year=year,month=month,disaster=disaster_type)
+        
+        world = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+        world = world[(world.name!="Antarctica")]
 
+        world['empty_col'] = 0
+        preds = world.merge(df_pred, left_on='name', right_on='country_name', how='inner')
+        world_inverse = world.overlay(preds,how='difference')
+        
+        img_inverse = gv.Polygons(data=world_inverse,vdims='empty_col').opts(
+            height=height,width=width, cmap="gray"
+        )
+        
+        img_fill = gv.Polygons(data=preds, vdims=["CPI", "name"]).opts(
+            height=height, width=width, 
+            title=title_name, colorbar=True, tools=['hover',])
+        img = img_fill*img_inverse
+        bar = hv.Bars(df_pred.sort_values('CPI',
+                      ascending=True).iloc[:30],
+                      ('country_name','Country'),
+                      'CPI').opts(
+            tools=['hover'],
+            width=width,
+            height=height,
+            xrotation=70,
+            title="Which countries are affected the most?"
+        )
+        return img+bar
+        pass
+    disaster_type_list = ['Earthquake', 'Extreme temperature', 'Flood', 'Landslide', 'Storm', 'Wildfire']
+    date_slider = pn.widgets.IntSlider(name='Year', start=min_date, end=max_date, value=2023)
+    month_date_slider = pn.widgets.IntSlider(name='Month', start=1, end=12, value=1)
+    selector = pn.widgets.Select(options=disaster_type_list, name='Type of Disaster')
+    
+    widget_dmap = hv.DynamicMap(pn.bind(cpi_prediction_maps, 
+                                        year=date_slider.param.value, 
+                                        month = month_date_slider.param.value,
+                                        disaster_type=selector.param.value))
+    widget_dmap.opts(height=100,framewise=True)
+    
+    description = pn.pane.Markdown('''
+    # Where will the disasters do the worst damage?
+    ''')
+    if voila:
+        return pn.ipywidget(pn.Column(description,pn.Row(date_slider,month_date_slider,selector),widget_dmap))
+    else:
+        return pn.Column(description,pn.Row(date_slider,month_date_slider,selector),widget_dmap)
     
