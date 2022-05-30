@@ -20,6 +20,9 @@ import datetime as dt
 import geoviews as gv
 from sklearn.model_selection import train_test_split
 
+import panel as pn
+import holoviews as hv
+
 gv.extension("bokeh")
 
 def plot_geomap(df, title):
@@ -51,7 +54,7 @@ def plot_geomap(df, title):
     plt.ylabel("Latitude")
     plt.title(title)
 
-def plot_interactive_scattermap(df, title_name, point_size):
+def plot_interactive_scattermap(df, title_name, point_size,point_color="tomato",indep=True):
     """
     Plot earthquake locations on worldwide scatter map.
     
@@ -62,37 +65,39 @@ def plot_interactive_scattermap(df, title_name, point_size):
     **:point_size: int:**
         Scatter point size.
 
-    Returns: None
+    Returns: geoviews map objects
     """
     assert isinstance(df, pd.DataFrame)
     assert isinstance(title_name, str)
 
     # WorldMap Background
     world = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
-    world = world[(world.pop_est>0) & (world.name!="Antarctica")]
-    world_map = gv.Polygons(world)
-
+#     world = world[(world.pop_est>0) & (world.name!="Antarctica")]
+    world['empty_col'] = 0
+    world_map = gv.Polygons(world,vdims='empty_col').opts(cmap="gray")
     points_on_map = gv.Points(df,
                               kdims=["longitude", "latitude"],
-                              vdims=["mag"]).opts(color="tomato",
+                              vdims=["mag"]).opts(color=point_color,
                                                   size=point_size,
                                                   line_color="black",
                                                   hover_color="lime",
-                                                  tools=["hover", ],
                                                   title=title_name,
                                                   height=400,
-                                                  width=600)
-
-    return world_map * points_on_map
+                                                  width=600,
+                                                 )
+    if indep:
+        return world_map * points_on_map
+    else:
+        return world_map, points_on_map
 
 def prepare_earthquake_data(days_out_to_predict = 7):
     """
     Gets dataset about historical earthquakes with aggregated longitude and latitude. Returns dataset after feature extraction and dataset used to predict in next seven days.
     
-    **:dats_out_to_predict: int**
+    **:days_out_to_predict: int**
         Rolling window size.
     
-    Returns: (pd.DataFrame, pd.DataFrame)
+    **Returns: (pd.DataFrame, pd.DataFrame)**
     """
     # get latest data from USGS servers
     df = pd.read_csv('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.csv')
@@ -308,3 +313,46 @@ def plot_roc(df, max_depth=3, eta=0.1):
     plt.show()
     print("Confusion Matrix: \n",confusion_matrix(y_test,ypred_bst))
     print("\nRecall 'TP/TP+FN' = ", recall_score(y_test,ypred_bst))
+    
+    
+def predicted_earthquake_module(voila=True):
+    """
+    Plot the historical average locations of earthquakes as well as predicted earthquakes in the next 7 days.
+    
+    **:voila: bool**
+        Use to convert between ipywidget output and bokeh backend output
+    
+    Returns: ipywidget converted panel & bokeh plot, or a panel & bokeh plot.
+    """
+    df_past, df_future = prepare_earthquake_data()
+    df_past = df_past.drop_duplicates()
+    _,ax_past = plot_interactive_scattermap(df_past, '', 5,indep=True)
+    days_inter, df_output = predict_earthquake_model(df_past, df_future)
+    
+    df_inter = df_output[df_output['mag']>0.01]
+    
+    wm, ax_future = plot_interactive_scattermap(df_inter, '', 8,point_color="teal",indep=True)
+    
+    def pred_earth_maps(selected):
+            if selected=="Future":
+                ax_future.opts(color="yellow")
+                ax_past.opts(color="red")
+            elif selected=="Historical":
+                ax_future.opts(color="red")
+                ax_past.opts(color="yellow")
+            return (wm*ax_past*ax_future)
+    selector_options =["Future","Historical"]
+    selector = pn.widgets.Select(options=selector_options, name='Highlight Points')
+    widget_dmap = hv.DynamicMap(pn.bind(pred_earth_maps, selected=selector.param.value))
+    widget_dmap.opts(height=500,framewise=True,title="Predicted eathquake and historical average locations")
+    description = pn.pane.Markdown('''
+    # Where will the next disaster strike?
+    In the plots below we predict where earthquakes will occur in the next 7 days.
+    ''')
+    
+    if voila:
+        return pn.ipywidget(pn.Column(description,selector,widget_dmap))
+    else:
+        return pn.Column(description,selector,widget_dmap)
+
+    
