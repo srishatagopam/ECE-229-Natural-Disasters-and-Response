@@ -85,6 +85,7 @@ pip install seaborn
 [Visualization Notebook](https://github.com/js-konda/ece-143/blob/main/Final_project_code.ipynb)
 
 <h2> AWS guide </h2>
+
 1.Download ece229.pem.
 
 2.Save this file to a local directory, run the following command:
