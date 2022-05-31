@@ -34,7 +34,7 @@ def plot_geomap(df, title):
     **:title: str:**
         Title of scatter plots.
 
-    Returns: None
+    **Returns: None**
     """
 
     assert isinstance(df, pd.DataFrame)
@@ -65,10 +65,13 @@ def plot_interactive_scattermap(df, title_name, point_size,point_color="tomato",
     **:point_size: int:**
         Scatter point size.
 
-    Returns: geoviews map objects
+    **Returns: geoviews map objects**
     """
     assert isinstance(df, pd.DataFrame)
     assert isinstance(title_name, str)
+    assert isinstance(point_size, int) and point_size > 0
+    assert isinstance(point_color, str)
+    assert isinstance(indep, bool)
 
     # WorldMap Background
     world = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
@@ -190,7 +193,7 @@ def predict_earthquake_model(df, df_live, days_out_to_predict = 7, max_depth=3, 
         Step size shrinkage value for addressing overfitting; hyperparameter for XGBoost model.
    
 
-    Returns: (list, pd.DataFrame)
+    **Returns: (list, pd.DataFrame)**
     """
     assert isinstance(df, pd.DataFrame)
     assert isinstance(df_live, pd.DataFrame)
@@ -261,7 +264,7 @@ def plot_roc(df, max_depth=3, eta=0.1):
     **:eta: float**
         Step size shrinkage value for addressing overfitting; hyperparameter for XGBoost model.
     
-    Returns: None
+    **Returns: None**
     """
     # Modules Import
     from sklearn.metrics import roc_curve
@@ -322,8 +325,10 @@ def predicted_earthquake_module(voila=True):
     **:voila: bool**
         Use to convert between ipywidget output and bokeh backend output
     
-    Returns: ipywidget converted panel & bokeh plot, or a panel & bokeh plot.
+    **Returns: ipywidget converted panel & bokeh plot, or a panel & bokeh plot.**
     """
+    assert isinstance(voila, bool)
+    
     df_past, df_future = prepare_earthquake_data()
     df_past = df_past.drop_duplicates()
     _,ax_past = plot_interactive_scattermap(df_past, '', 5,indep=True)

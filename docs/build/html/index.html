@@ -132,12 +132,22 @@
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#module-custom_code.major_disaster_analysis">
-     Disaster Analysis
+     Disaster Analysis - Geographical
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#disaster-analysis-temporal">
+     Disaster Analysis - Temporal
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#module-custom_code.ML_models.disaster_cpi_prediction">
-     Machine Learning Models
+     CPI Prediction Model
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#module-custom_code.ML_models.realtime_earthquake_prediction">
+     Earthquake Prediction Model
     </a>
    </li>
   </ul>
@@ -178,7 +188,7 @@ damage.</p>
 <section id="api-documention">
 <h1>API Documention<a class="headerlink" href="#api-documention" title="Permalink to this headline">#</a></h1>
 <section id="module-custom_code.major_disaster_analysis">
-<span id="disaster-analysis"></span><h2>Disaster Analysis<a class="headerlink" href="#module-custom_code.major_disaster_analysis" title="Permalink to this headline">#</a></h2>
+<span id="disaster-analysis-geographical"></span><h2>Disaster Analysis - Geographical<a class="headerlink" href="#module-custom_code.major_disaster_analysis" title="Permalink to this headline">#</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="custom_code.major_disaster_analysis.death_vs_gdp">
 <span class="sig-prename descclassname"><span class="pre">custom_code.major_disaster_analysis.</span></span><span class="sig-name descname"><span class="pre">death_vs_gdp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">natural_disaster_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdp_df</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#custom_code.major_disaster_analysis.death_vs_gdp" title="Permalink to this definition">#</a></dt>
@@ -206,20 +216,41 @@ for disasters that caused over 5000 deaths.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="custom_code.major_disaster_analysis.map_distribution_cases">
-<span class="sig-prename descclassname"><span class="pre">custom_code.major_disaster_analysis.</span></span><span class="sig-name descname"><span class="pre">map_distribution_cases</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">natural_disaster_df</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#custom_code.major_disaster_analysis.map_distribution_cases" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">custom_code.major_disaster_analysis.</span></span><span class="sig-name descname"><span class="pre">map_distribution_cases</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">natural_disaster_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">voila</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#custom_code.major_disaster_analysis.map_distribution_cases" title="Permalink to this definition">#</a></dt>
 <dd><p>Plots a world map that displays the density of the countries that major disasters
-took place. Can also display multiple types of dependent features. Expand on this
-function to handle multiple cases to combine multiple visualizations into one.</p>
+took place. Can also display multiple types of dependent features.</p>
 <dl class="simple">
 <dt><strong>:natural_disaster_df: pd.DataFrame</strong></dt><dd><p>The natural disaster dataframe</p>
 </dd>
+<dt><strong>:voila: bool</strong></dt><dd><p>Use to return plot that is visible in a notebook</p>
+</dd>
+<dt><strong>Returns: ipywidget.widget</strong></dt><dd><p>a widget incorporating panel controlling parameters and a holoviews dynamic map</p>
+</dd>
 </dl>
-<p><strong>Returns: None</strong></p>
 </dd></dl>
 
 </section>
+<section id="disaster-analysis-temporal">
+<h2>Disaster Analysis - Temporal<a class="headerlink" href="#disaster-analysis-temporal" title="Permalink to this headline">#</a></h2>
+</section>
 <section id="module-custom_code.ML_models.disaster_cpi_prediction">
-<span id="machine-learning-models"></span><h2>Machine Learning Models<a class="headerlink" href="#module-custom_code.ML_models.disaster_cpi_prediction" title="Permalink to this headline">#</a></h2>
+<span id="cpi-prediction-model"></span><h2>CPI Prediction Model<a class="headerlink" href="#module-custom_code.ML_models.disaster_cpi_prediction" title="Permalink to this headline">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="custom_code.ML_models.disaster_cpi_prediction.cpi_prediction_module">
+<span class="sig-prename descclassname"><span class="pre">custom_code.ML_models.disaster_cpi_prediction.</span></span><span class="sig-name descname"><span class="pre">cpi_prediction_module</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">min_date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1950</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2050</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">voila</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#custom_code.ML_models.disaster_cpi_prediction.cpi_prediction_module" title="Permalink to this definition">#</a></dt>
+<dd><p>Plots a world map that displays the density of predicted CPI per country based on panel sliders</p>
+<dl class="simple">
+<dt><strong>:min_date: Int</strong></dt><dd><p>minimum date for slider</p>
+</dd>
+<dt><strong>:max_date: Int</strong></dt><dd><p>maxmimum date for slider</p>
+</dd>
+<dt><strong>:voila: bool</strong></dt><dd><p>Use to return plot that is visible in a notebook</p>
+</dd>
+<dt><strong>Returns: ipywidget.widget</strong></dt><dd><p>a widget incorporating panel controlling parameters and a holoviews dynamic map</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="custom_code.ML_models.disaster_cpi_prediction.one_hot_encode">
 <span class="sig-prename descclassname"><span class="pre">custom_code.ML_models.disaster_cpi_prediction.</span></span><span class="sig-name descname"><span class="pre">one_hot_encode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#custom_code.ML_models.disaster_cpi_prediction.one_hot_encode" title="Permalink to this definition">#</a></dt>
@@ -230,7 +261,7 @@ function to handle multiple cases to combine multiple visualizations into one.</
 <dt><strong>:title_name: str:</strong></dt><dd><p>One-hot encoding target.</p>
 </dd>
 </dl>
-<p>Returns: pd.DataFrame</p>
+<p><strong>Returns: pd.DataFrame</strong></p>
 </dd></dl>
 
 <dl class="py function">
@@ -243,7 +274,7 @@ function to handle multiple cases to combine multiple visualizations into one.</
 <dt><strong>:title_name: str:</strong></dt><dd><p>Plot title name.</p>
 </dd>
 </dl>
-<p>Returns: gv.Polygons object</p>
+<p><strong>Returns: gv.Polygons object</strong></p>
 </dd></dl>
 
 <dl class="py function">
@@ -262,7 +293,7 @@ function to handle multiple cases to combine multiple visualizations into one.</
 <dt><strong>:disaster: str</strong></dt><dd><p>One type from [‘Earthquake’, ‘Extreme temperature’, ‘Flood’, ‘Landslide’, ‘Storm’, ‘Wildfire’].</p>
 </dd>
 </dl>
-<p>Returns: (pd.DataFrame, str)</p>
+<p><strong>Returns: (pd.DataFrame, str)</strong></p>
 </dd></dl>
 
 <dl class="py function">
@@ -273,10 +304,13 @@ function to handle multiple cases to combine multiple visualizations into one.</
 <dt><strong>:file_name: str</strong></dt><dd><p>File path for .csv dataset.</p>
 </dd>
 </dl>
-<p>Returns: (pd.DataFrame, list)</p>
+<p><strong>Returns: (pd.DataFrame, list)</strong></p>
 </dd></dl>
 
-<span class="target" id="module-custom_code.ML_models.realtime_earthquake_prediction"></span><dl class="py function">
+</section>
+<section id="module-custom_code.ML_models.realtime_earthquake_prediction">
+<span id="earthquake-prediction-model"></span><h2>Earthquake Prediction Model<a class="headerlink" href="#module-custom_code.ML_models.realtime_earthquake_prediction" title="Permalink to this headline">#</a></h2>
+<dl class="py function">
 <dt class="sig sig-object py" id="custom_code.ML_models.realtime_earthquake_prediction.plot_geomap">
 <span class="sig-prename descclassname"><span class="pre">custom_code.ML_models.realtime_earthquake_prediction.</span></span><span class="sig-name descname"><span class="pre">plot_geomap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#custom_code.ML_models.realtime_earthquake_prediction.plot_geomap" title="Permalink to this definition">#</a></dt>
 <dd><p>Show scatter plots on world map. Returns</p>
@@ -286,12 +320,12 @@ function to handle multiple cases to combine multiple visualizations into one.</
 <dt><strong>:title: str:</strong></dt><dd><p>Title of scatter plots.</p>
 </dd>
 </dl>
-<p>Returns: None</p>
+<p><strong>Returns: None</strong></p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="custom_code.ML_models.realtime_earthquake_prediction.plot_interactive_scattermap">
-<span class="sig-prename descclassname"><span class="pre">custom_code.ML_models.realtime_earthquake_prediction.</span></span><span class="sig-name descname"><span class="pre">plot_interactive_scattermap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point_size</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#custom_code.ML_models.realtime_earthquake_prediction.plot_interactive_scattermap" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">custom_code.ML_models.realtime_earthquake_prediction.</span></span><span class="sig-name descname"><span class="pre">plot_interactive_scattermap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'tomato'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#custom_code.ML_models.realtime_earthquake_prediction.plot_interactive_scattermap" title="Permalink to this definition">#</a></dt>
 <dd><p>Plot earthquake locations on worldwide scatter map.</p>
 <dl class="simple">
 <dt><strong>:df: pd.DataFrame:</strong></dt><dd><p>Dataframe for dataset (including ‘longitude’ and ‘latitude’ columns).</p>
@@ -301,7 +335,7 @@ function to handle multiple cases to combine multiple visualizations into one.</
 <dt><strong>:point_size: int:</strong></dt><dd><p>Scatter point size.</p>
 </dd>
 </dl>
-<p>Returns: None</p>
+<p><strong>Returns: geoviews map objects</strong></p>
 </dd></dl>
 
 <dl class="py function">
@@ -316,7 +350,7 @@ function to handle multiple cases to combine multiple visualizations into one.</
 <dt><strong>:eta: float</strong></dt><dd><p>Step size shrinkage value for addressing overfitting; hyperparameter for XGBoost model.</p>
 </dd>
 </dl>
-<p>Returns: None</p>
+<p><strong>Returns: None</strong></p>
 </dd></dl>
 
 <dl class="py function">
@@ -335,7 +369,18 @@ function to handle multiple cases to combine multiple visualizations into one.</
 <dt><strong>:eta: float</strong></dt><dd><p>Step size shrinkage value for addressing overfitting; hyperparameter for XGBoost model.</p>
 </dd>
 </dl>
-<p>Returns: (list, pd.DataFrame)</p>
+<p><strong>Returns: (list, pd.DataFrame)</strong></p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="custom_code.ML_models.realtime_earthquake_prediction.predicted_earthquake_module">
+<span class="sig-prename descclassname"><span class="pre">custom_code.ML_models.realtime_earthquake_prediction.</span></span><span class="sig-name descname"><span class="pre">predicted_earthquake_module</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">voila</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#custom_code.ML_models.realtime_earthquake_prediction.predicted_earthquake_module" title="Permalink to this definition">#</a></dt>
+<dd><p>Plot the historical average locations of earthquakes as well as predicted earthquakes in the next 7 days.</p>
+<dl class="simple">
+<dt><strong>:voila: bool</strong></dt><dd><p>Use to convert between ipywidget output and bokeh backend output</p>
+</dd>
+</dl>
+<p><strong>Returns: ipywidget converted panel &amp; bokeh plot, or a panel &amp; bokeh plot.</strong></p>
 </dd></dl>
 
 <dl class="py function">
@@ -343,10 +388,10 @@ function to handle multiple cases to combine multiple visualizations into one.</
 <span class="sig-prename descclassname"><span class="pre">custom_code.ML_models.realtime_earthquake_prediction.</span></span><span class="sig-name descname"><span class="pre">prepare_earthquake_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">days_out_to_predict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">7</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#custom_code.ML_models.realtime_earthquake_prediction.prepare_earthquake_data" title="Permalink to this definition">#</a></dt>
 <dd><p>Gets dataset about historical earthquakes with aggregated longitude and latitude. Returns dataset after feature extraction and dataset used to predict in next seven days.</p>
 <dl class="simple">
-<dt><strong>:dats_out_to_predict: int</strong></dt><dd><p>Rolling window size.</p>
+<dt><strong>:days_out_to_predict: int</strong></dt><dd><p>Rolling window size.</p>
 </dd>
 </dl>
-<p>Returns: (pd.DataFrame, pd.DataFrame)</p>
+<p><strong>Returns: (pd.DataFrame, pd.DataFrame)</strong></p>
 </dd></dl>
 
 </section>

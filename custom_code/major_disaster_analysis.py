@@ -9,6 +9,8 @@ import datetime as dt
 import holoviews as hv
 gv.extension('bokeh')
 
+
+
 def death_vs_gdp(natural_disaster_df, gdp_df):
     """
     Plots a graph that shows the Total Death counts vs the GDP per capita value
@@ -77,10 +79,11 @@ def map_distribution_cases(natural_disaster_df, voila=True):
     **:voila: bool**
         Use to return plot that is visible in a notebook
     
-    **Returns: ipywidget.widget **
+    **Returns: ipywidget.widget**
         a widget incorporating panel controlling parameters and a holoviews dynamic map
     """
     assert isinstance(natural_disaster_df, pd.DataFrame)
+    assert isinstance(voila, bool)
     selector_opts = {
         '# Disasters':{'dep_var':'Year', "dep_var_2":'Year_2','feature_name':'# Disasters','group_op':'count'},
         '# Deaths':{'dep_var':'Total Deaths', "dep_var_2":'TD_2','feature_name':'# Deaths','group_op':'sum'},

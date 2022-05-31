@@ -22,8 +22,11 @@ def plot_worldwide_choroplethmap(df, title_name):
     **:title_name: str:**
         Plot title name.
 
-    Returns: gv.Polygons object
+    **Returns: gv.Polygons object**
     """
+    
+    assert isinstance(df, pd.DataFrame)
+    assert isinstance(title_name, str)
 
     # WorldMap Background
     world = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
@@ -45,7 +48,7 @@ def one_hot_encode(df, name):
         One-hot encoding target.
         
 
-    Returns: pd.DataFrame
+    **Returns: pd.DataFrame**
     """
     assert isinstance(df, pd.DataFrame)
     assert isinstance(name, str)
@@ -62,7 +65,7 @@ def prepare_worldwide_disaster_data(file_name = '1970-2022_DISASTERS.xlsx - emda
     **:file_name: str**
         File path for .csv dataset.
 
-    Returns: (pd.DataFrame, list)
+    **Returns: (pd.DataFrame, list)**
     """
     #df = pd.read_csv ('./datasets/1970-2022_DISASTERS.xlsx - emdat data.csv')
     # Pretreatment
@@ -131,7 +134,7 @@ def predict_cpi_model(df, features, year=2023, month=7, disaster='Wildfire'):
     **:disaster: str**
         One type from ['Earthquake', 'Extreme temperature', 'Flood', 'Landslide', 'Storm', 'Wildfire'].
     
-    Returns: (pd.DataFrame, str)
+    **Returns: (pd.DataFrame, str)**
     """
     assert isinstance(df, pd.DataFrame)
     assert isinstance(features, list)
@@ -189,9 +192,12 @@ def cpi_prediction_module(min_date = 1950,max_date =2050,voila=True):
     **:voila: bool**
         Use to return plot that is visible in a notebook
     
-    **Returns: ipywidget.widget **
+    **Returns: ipywidget.widget**
         a widget incorporating panel controlling parameters and a holoviews dynamic map
     """
+    assert isinstance(min_date, int) and 1950 <= min_date <= 2021
+    assert isinstance(max_date, int) and 1951 <= max_date <= 2050
+    assert isinstance(voila, bool)
     
     df_prep, features = prepare_worldwide_disaster_data(file_name = './custom_code/ML_models/1970-2022_DISASTERS.xlsx - emdat data.csv')
     

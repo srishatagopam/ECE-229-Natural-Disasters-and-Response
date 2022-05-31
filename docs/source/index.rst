@@ -34,17 +34,23 @@ API Documention
 ===============
 
 
-Disaster Analysis
------------------
+Disaster Analysis - Geographical
+--------------------------------
 
 .. automodule:: custom_code.major_disaster_analysis
     :members:
 	
-Machine Learning Models
------------------------
+Disaster Analysis - Temporal
+----------------------------
+	
+CPI Prediction Model
+--------------------
 	
 .. automodule:: custom_code.ML_models.disaster_cpi_prediction
 	:members:
+	
+Earthquake Prediction Model
+---------------------------
 	
 .. automodule:: custom_code.ML_models.realtime_earthquake_prediction
 	:members:
