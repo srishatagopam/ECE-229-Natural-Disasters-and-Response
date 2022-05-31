@@ -10,6 +10,7 @@ from sklearn.model_selection import train_test_split
 
 import holoviews as hv
 import panel as pn
+import jupyter_bokeh
 hv.extension('bokeh')
 gv.extension("bokeh")
 
