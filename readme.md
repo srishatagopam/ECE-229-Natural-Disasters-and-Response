@@ -90,6 +90,8 @@ pip install seaborn
 
 2.Save this file to a local directory, run the following command:
 
+'''
 ssh -i ece229.pem -L 8866:localhost:8866 ec2-user@13.52.245.85 -v -N
+'''
 
 3.Open localhost:8866 on your browser
