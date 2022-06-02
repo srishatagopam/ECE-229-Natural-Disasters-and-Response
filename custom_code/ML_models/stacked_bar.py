@@ -164,7 +164,9 @@ def dis_analysis(df,voila=True):
     dmap.opts(framewise=True)
     dmap.opts(height=height, width=width, line_width=1.0, tools=['hover'], xrotation=70)
     description = pn.pane.Markdown('''
-    # What type of disasters are most common?
+    ## What type of disasters are most common?
+    
+    We can also take a closer look at how often different types of disasters occur over a certain time period. Knowing the historical distribution of disaster data can help us prepare in the long-term; as the frequency of natural disasters increase year after year, we rely on donators now more than ever to assist us in helping tragedy-stricken communities rebuild after disaster strikes. Try filtering the data by the number of disaster occurrences, deaths, or economic damage incurred. Steadily, the monetary damage to communities increases over time - your donations help rebuild these areas faster.
     ''')
     final_module = pn.Column(description,pn.Row(select_damage),dmap)
     if voila:

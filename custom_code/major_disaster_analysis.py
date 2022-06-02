@@ -156,7 +156,30 @@ def map_distribution_cases(natural_disaster_df, voila=True):
     widget_dmap.opts(height=100,framewise=True)
     
     description = pn.pane.Markdown('''
-    # Where are disasters happening?
+    <center>
+    <h1> Humanitaire&trade; Global Disaster Response <br> Why Your Donations Matter </br>  </h1>
+    </center>
+    <center>
+        <table>
+            <tr>
+                <th>
+                    <p align="left">  <img width="100" height="100" src="https://cdn4.iconfinder.com/data/icons/ios-edge-glyph-5/25/Hands-Heart-512.png">  </p>
+                </th>
+                <th>
+                    <font size="+20" face="Arial">humanitaire&trade; </font>
+                </th>
+            </tr>
+        </table
+    </center>
+
+    Now more than ever, communities afflicted by natural disasters around the globe need the help of donators like you to make a difference; we want to let you in on where your money is likely to provide the most assistance through a series of interactive and educational visuals. More now than ever, people are skeptical about where their money is going and whether it's effectively reaching people in need. We want to show you why your donations can help alleviate poverty, hunger, and homelessness in disaster-stricken areas as well as *where* it is going.
+
+    There are a number of tools we at **Humanitaire&trade;** use to justify distributing aid that your donations pay for. We use state-of-the-art statistical and machine learning methods to best define where certain natural disasters may take place in the future - and divest aid and response in anticipation. When looking at past data, we look filter disasters and their effects on two domains: geography and time period; the next few interactive visuals will give you a sense for how disasters occur worldwide and the severity across geographical regions and from certain time periods.
+
+    ## Where are disasters concentrated?
+
+    Some countries unfortunately face more disasters than others, be it tornados, monsoons, wildfires, or earthquakes. Location has everything to do with how susceptible a community is to natural disasters. Not every nation has the same resources, so some countries are affected more heavily than others. You can try it out for yourself! Check out the global distribution of a number of disaster-related statistics, such as the counts of disasters, deaths, economic damages, reconstruction costs, etc. You can also filter down to a specific time period on a yearly basis. 
+        
     ''')
     if voila:
         return pn.ipywidget(pn.Column(description,pn.Row(dateslider,selector),widget_dmap))
