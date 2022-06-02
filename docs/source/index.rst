@@ -67,13 +67,18 @@ disasters and measures disaster occurance, deaths, and economic damages (stratif
 CPI Prediction Model
 --------------------
 
-
+Similar to the geographical disaster analysis, this module predicts a country's CPI: community preparedness index 
+based on the features of the dataset. Users can pick a year, month, and disaster type of predict each country's CPI; 
+a bar plot will rank the lowest ten CPIs. Prediction is done using an XGBoost model.
 	
 .. automodule:: custom_code.ML_models.disaster_cpi_prediction
 	:members:
 	
 Earthquake Prediction Model
 ---------------------------
+
+The purpose of this visualization is twofold: first, users can pick from a dropdown whether to highlight historical or 
+predicted earthquakes in the next seven days. Prediction is again done using XGBoost.
 	
 .. automodule:: custom_code.ML_models.realtime_earthquake_prediction
 	:members:

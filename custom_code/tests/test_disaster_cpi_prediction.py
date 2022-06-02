@@ -72,9 +72,9 @@ def test_cpi_prediction_empty(cleaned_disaster_dataset, features):
     out = predict_cpi_model(cleaned_disaster_dataset, features)
     assert not out[0].empty and len(out[1]) > 0
     
-def test_cpi_prediction_module():
+def test_cpi_prediction_module1():
     assert isinstance(cpi_prediction_module(min_date = 1950,max_date =2050,voila=True), jupyter_bokeh.BokehModel)
     
-def test_cpi_prediction_module():
+def test_cpi_prediction_module2():
     assert isinstance(cpi_prediction_module(min_date = 1950,max_date =2050,voila=False), pn.Column)
     

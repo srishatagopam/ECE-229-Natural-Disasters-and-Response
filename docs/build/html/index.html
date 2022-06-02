@@ -131,22 +131,22 @@
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#module-custom_code.major_disaster_analysis">
+    <a class="reference internal nav-link" href="#disaster-analysis-geographical">
      Disaster Analysis - Geographical
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#module-custom_code.ML_models.dis_trends">
+    <a class="reference internal nav-link" href="#disaster-analysis-temporal">
      Disaster Analysis - Temporal
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#module-custom_code.ML_models.disaster_cpi_prediction">
+    <a class="reference internal nav-link" href="#cpi-prediction-model">
      CPI Prediction Model
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#module-custom_code.ML_models.realtime_earthquake_prediction">
+    <a class="reference internal nav-link" href="#earthquake-prediction-model">
      Earthquake Prediction Model
     </a>
    </li>
@@ -187,9 +187,18 @@ damage.</p>
 </section>
 <section id="api-documention">
 <h1>API Documention<a class="headerlink" href="#api-documention" title="Permalink to this headline">#</a></h1>
-<section id="module-custom_code.major_disaster_analysis">
-<span id="disaster-analysis-geographical"></span><h2>Disaster Analysis - Geographical<a class="headerlink" href="#module-custom_code.major_disaster_analysis" title="Permalink to this headline">#</a></h2>
-<dl class="py function">
+<p>There are four main components to our dashboard that create a collection of visualizations that serve
+educate our end users. The following sections will show each of these four main components and their
+associated modules.</p>
+<section id="disaster-analysis-geographical">
+<h2>Disaster Analysis - Geographical<a class="headerlink" href="#disaster-analysis-geographical" title="Permalink to this headline">#</a></h2>
+<p>The main visualization here is allowing an end user to visualize disaster statistics such as the distribution
+of disasters, deaths, homeless, injured, affected, damages, and reconstruction costs on a geographical basis:
+the maximum amount of granularity offered here is per country. This is shown both on a chloropleth map with
+a colormap for intensity of each statistic as well as a bar plot showing the top ten countries per statistic.
+The user is able to pick each statistic from a dropdown menu and fine-tune the period of the distribution in
+terms of years.</p>
+<span class="target" id="module-custom_code.major_disaster_analysis"></span><dl class="py function">
 <dt class="sig sig-object py" id="custom_code.major_disaster_analysis.death_vs_gdp">
 <span class="sig-prename descclassname"><span class="pre">custom_code.major_disaster_analysis.</span></span><span class="sig-name descname"><span class="pre">death_vs_gdp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">natural_disaster_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdp_df</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#custom_code.major_disaster_analysis.death_vs_gdp" title="Permalink to this definition">#</a></dt>
 <dd><p>Plots a graph that shows the Total Death counts vs the GDP per capita value
@@ -230,9 +239,13 @@ took place. Can also display multiple types of dependent features.</p>
 </dd></dl>
 
 </section>
-<section id="module-custom_code.ML_models.dis_trends">
-<span id="disaster-analysis-temporal"></span><h2>Disaster Analysis - Temporal<a class="headerlink" href="#module-custom_code.ML_models.dis_trends" title="Permalink to this headline">#</a></h2>
-<dl class="py function">
+<section id="disaster-analysis-temporal">
+<h2>Disaster Analysis - Temporal<a class="headerlink" href="#disaster-analysis-temporal" title="Permalink to this headline">#</a></h2>
+<p>There are two main visualizations showcasing the distributions of disasters over time. The first is a bar plot
+that similarly shows the previously mentioned disaster statistics over a specified time period (again accessible
+through a dropdown menu and range bar), as well as a dynamic stacked bar plot that filters for specific types of
+disasters and measures disaster occurance, deaths, and economic damages (stratified via a dropdown menu).</p>
+<span class="target" id="module-custom_code.ML_models.dis_trends"></span><dl class="py function">
 <dt class="sig sig-object py" id="custom_code.ML_models.dis_trends.dis_analysis_">
 <span class="sig-prename descclassname"><span class="pre">custom_code.ML_models.dis_trends.</span></span><span class="sig-name descname"><span class="pre">dis_analysis_</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">natural_disaster_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">voila</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#custom_code.ML_models.dis_trends.dis_analysis_" title="Permalink to this definition">#</a></dt>
 <dd><p>Plots multiple disaster statistics over specified time period.</p>
@@ -297,9 +310,12 @@ took place. Can also display multiple types of dependent features.</p>
 </dd></dl>
 
 </section>
-<section id="module-custom_code.ML_models.disaster_cpi_prediction">
-<span id="cpi-prediction-model"></span><h2>CPI Prediction Model<a class="headerlink" href="#module-custom_code.ML_models.disaster_cpi_prediction" title="Permalink to this headline">#</a></h2>
-<dl class="py function">
+<section id="cpi-prediction-model">
+<h2>CPI Prediction Model<a class="headerlink" href="#cpi-prediction-model" title="Permalink to this headline">#</a></h2>
+<p>Similar to the geographical disaster analysis, this module predicts a country’s CPI: community preparedness index
+based on the features of the dataset. Users can pick a year, month, and disaster type of predict each country’s CPI;
+a bar plot will rank the lowest ten CPIs. Prediction is done using an XGBoost model.</p>
+<span class="target" id="module-custom_code.ML_models.disaster_cpi_prediction"></span><dl class="py function">
 <dt class="sig sig-object py" id="custom_code.ML_models.disaster_cpi_prediction.cpi_prediction_module">
 <span class="sig-prename descclassname"><span class="pre">custom_code.ML_models.disaster_cpi_prediction.</span></span><span class="sig-name descname"><span class="pre">cpi_prediction_module</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">min_date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1950</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2050</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">voila</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#custom_code.ML_models.disaster_cpi_prediction.cpi_prediction_module" title="Permalink to this definition">#</a></dt>
 <dd><p>Plots a world map that displays the density of predicted CPI per country based on panel sliders</p>
@@ -372,9 +388,11 @@ took place. Can also display multiple types of dependent features.</p>
 </dd></dl>
 
 </section>
-<section id="module-custom_code.ML_models.realtime_earthquake_prediction">
-<span id="earthquake-prediction-model"></span><h2>Earthquake Prediction Model<a class="headerlink" href="#module-custom_code.ML_models.realtime_earthquake_prediction" title="Permalink to this headline">#</a></h2>
-<dl class="py function">
+<section id="earthquake-prediction-model">
+<h2>Earthquake Prediction Model<a class="headerlink" href="#earthquake-prediction-model" title="Permalink to this headline">#</a></h2>
+<p>The purpose of this visualization is twofold: first, users can pick from a dropdown whether to highlight historical or
+predicted earthquakes in the next seven days. Prediction is again done using XGBoost.</p>
+<span class="target" id="module-custom_code.ML_models.realtime_earthquake_prediction"></span><dl class="py function">
 <dt class="sig sig-object py" id="custom_code.ML_models.realtime_earthquake_prediction.plot_geomap">
 <span class="sig-prename descclassname"><span class="pre">custom_code.ML_models.realtime_earthquake_prediction.</span></span><span class="sig-name descname"><span class="pre">plot_geomap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#custom_code.ML_models.realtime_earthquake_prediction.plot_geomap" title="Permalink to this definition">#</a></dt>
 <dd><p>Show scatter plots on world map. Returns</p>
