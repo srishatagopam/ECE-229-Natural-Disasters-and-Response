@@ -3,3 +3,4 @@ __pycache__/
 custom_code/__pycache__/
 .ipynb_checkpoints
 local_testing_notebook.ipynb
+custom_code/ML_models/stacked_bar_changed.py
