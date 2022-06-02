@@ -14,8 +14,7 @@ gv.extension('bokeh')
 
 def dis_analysis_(natural_disaster_df, voila=True):
     """
-    Plots a world map that displays the density of the countries that major disasters
-    took place. Can also display multiple types of dependent features. 
+    Plots multiple disaster statistics over specified time period.
     
     **:natural_disaster_df: pd.DataFrame**
         The natural disaster dataframe

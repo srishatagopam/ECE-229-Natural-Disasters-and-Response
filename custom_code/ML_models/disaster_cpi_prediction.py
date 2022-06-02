@@ -199,7 +199,7 @@ def cpi_prediction_module(min_date = 1950,max_date =2050,voila=True):
     assert isinstance(max_date, int) and 1951 <= max_date <= 2050
     assert isinstance(voila, bool)
     
-    df_prep, features = prepare_worldwide_disaster_data(file_name = './custom_code/ML_models/1970-2022_DISASTERS.xlsx - emdat data.csv')
+    df_prep, features = prepare_worldwide_disaster_data(file_name = './datasets/1970-2022_DISASTERS.xlsx - emdat data.csv')
     
     def cpi_prediction_maps(year,month,disaster_type):
         scale = 3/2+1/7

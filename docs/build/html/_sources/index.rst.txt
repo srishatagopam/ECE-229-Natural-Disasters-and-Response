@@ -42,6 +42,12 @@ Disaster Analysis - Geographical
 	
 Disaster Analysis - Temporal
 ----------------------------
+
+.. automodule:: custom_code.ML_models.dis_trends
+	:members:
+	
+.. automodule:: custom_code.ML_models.stacked_bar
+	:members:
 	
 CPI Prediction Model
 --------------------

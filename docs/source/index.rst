@@ -33,18 +33,41 @@ damage.
 API Documention
 ===============
 
+There are four main components to our dashboard that create a collection of visualizations that serve 
+educate our end users. The following sections will show each of these four main components and their
+associated modules.
 
 Disaster Analysis - Geographical
 --------------------------------
+
+The main visualization here is allowing an end user to visualize disaster statistics such as the distribution 
+of disasters, deaths, homeless, injured, affected, damages, and reconstruction costs on a geographical basis: 
+the maximum amount of granularity offered here is per country. This is shown both on a chloropleth map with 
+a colormap for intensity of each statistic as well as a bar plot showing the top ten countries per statistic. 
+The user is able to pick each statistic from a dropdown menu and fine-tune the period of the distribution in 
+terms of years.
 
 .. automodule:: custom_code.major_disaster_analysis
     :members:
 	
 Disaster Analysis - Temporal
 ----------------------------
+
+There are two main visualizations showcasing the distributions of disasters over time. The first is a bar plot 
+that similarly shows the previously mentioned disaster statistics over a specified time period (again accessible 
+through a dropdown menu and range bar), as well as a dynamic stacked bar plot that filters for specific types of 
+disasters and measures disaster occurance, deaths, and economic damages (stratified via a dropdown menu).
+
+.. automodule:: custom_code.ML_models.dis_trends
+	:members:
+	
+.. automodule:: custom_code.ML_models.stacked_bar
+	:members:
 	
 CPI Prediction Model
 --------------------
+
+
 	
 .. automodule:: custom_code.ML_models.disaster_cpi_prediction
 	:members:

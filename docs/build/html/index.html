@@ -136,7 +136,7 @@
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#disaster-analysis-temporal">
+    <a class="reference internal nav-link" href="#module-custom_code.ML_models.dis_trends">
      Disaster Analysis - Temporal
     </a>
    </li>
@@ -230,8 +230,72 @@ took place. Can also display multiple types of dependent features.</p>
 </dd></dl>
 
 </section>
-<section id="disaster-analysis-temporal">
-<h2>Disaster Analysis - Temporal<a class="headerlink" href="#disaster-analysis-temporal" title="Permalink to this headline">#</a></h2>
+<section id="module-custom_code.ML_models.dis_trends">
+<span id="disaster-analysis-temporal"></span><h2>Disaster Analysis - Temporal<a class="headerlink" href="#module-custom_code.ML_models.dis_trends" title="Permalink to this headline">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="custom_code.ML_models.dis_trends.dis_analysis_">
+<span class="sig-prename descclassname"><span class="pre">custom_code.ML_models.dis_trends.</span></span><span class="sig-name descname"><span class="pre">dis_analysis_</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">natural_disaster_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">voila</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#custom_code.ML_models.dis_trends.dis_analysis_" title="Permalink to this definition">#</a></dt>
+<dd><p>Plots multiple disaster statistics over specified time period.</p>
+<dl class="simple">
+<dt><strong>:natural_disaster_df: pd.DataFrame</strong></dt><dd><p>The natural disaster dataframe</p>
+</dd>
+<dt><strong>:voila: bool</strong></dt><dd><p>Use to return plot that is visible in a notebook</p>
+</dd>
+<dt><strong>Returns: ipywidget.widget</strong></dt><dd><p>a widget incorporating panel controlling parameters and a holoviews dynamic map</p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-custom_code.ML_models.stacked_bar"></span><dl class="py function">
+<dt class="sig sig-object py" id="custom_code.ML_models.stacked_bar.dis_analysis">
+<span class="sig-prename descclassname"><span class="pre">custom_code.ML_models.stacked_bar.</span></span><span class="sig-name descname"><span class="pre">dis_analysis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">voila</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#custom_code.ML_models.stacked_bar.dis_analysis" title="Permalink to this definition">#</a></dt>
+<dd><p>Does natural disaster trends analysis using Holoviews Dynamic Map.</p>
+<dl class="simple">
+<dt><strong>:df: pd.DataFrame</strong></dt><dd><p>The natural disaster dataframe.</p>
+</dd>
+<dt><strong>:voila: bool</strong></dt><dd><p>Use to return plot that is visible in a notebook</p>
+</dd>
+<dt><strong>Returns: ipywidget.widget</strong></dt><dd><p>a widget incorporating panel controlling parameters and a holoviews dynamic map</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="custom_code.ML_models.stacked_bar.stacked_plot_damages">
+<span class="sig-prename descclassname"><span class="pre">custom_code.ML_models.stacked_bar.</span></span><span class="sig-name descname"><span class="pre">stacked_plot_damages</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#custom_code.ML_models.stacked_bar.stacked_plot_damages" title="Permalink to this definition">#</a></dt>
+<dd><p>Prepares dataframe to be used as a stacked bar plot for damages incurred over time.</p>
+<dl class="simple">
+<dt><strong>:df: pd.DataFrame</strong></dt><dd><p>The natural disaster dataframe</p>
+</dd>
+<dt><strong>Returns: pd.DataFrame</strong></dt><dd><p>Prepared dataframe to be used for stacked bar plot.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="custom_code.ML_models.stacked_bar.stacked_plot_deaths">
+<span class="sig-prename descclassname"><span class="pre">custom_code.ML_models.stacked_bar.</span></span><span class="sig-name descname"><span class="pre">stacked_plot_deaths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#custom_code.ML_models.stacked_bar.stacked_plot_deaths" title="Permalink to this definition">#</a></dt>
+<dd><p>Prepares dataframe to be used as a stacked bar plot for deaths ocurred over time.</p>
+<dl class="simple">
+<dt><strong>:df: pd.DataFrame</strong></dt><dd><p>The natural disaster dataframe</p>
+</dd>
+<dt><strong>Returns: pd.DataFrame</strong></dt><dd><p>Prepared dataframe to be used for stacked bar plot.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="custom_code.ML_models.stacked_bar.stacked_plot_occurences">
+<span class="sig-prename descclassname"><span class="pre">custom_code.ML_models.stacked_bar.</span></span><span class="sig-name descname"><span class="pre">stacked_plot_occurences</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#custom_code.ML_models.stacked_bar.stacked_plot_occurences" title="Permalink to this definition">#</a></dt>
+<dd><p>Prepares dataframe to be used as a stacked bar plot for disaster occurances over time.</p>
+<dl class="simple">
+<dt><strong>:df: pd.DataFrame</strong></dt><dd><p>The natural disaster dataframe</p>
+</dd>
+<dt><strong>Returns: pd.DataFrame</strong></dt><dd><p>Prepared dataframe to be used for stacked bar plot.</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="module-custom_code.ML_models.disaster_cpi_prediction">
 <span id="cpi-prediction-model"></span><h2>CPI Prediction Model<a class="headerlink" href="#module-custom_code.ML_models.disaster_cpi_prediction" title="Permalink to this headline">#</a></h2>
