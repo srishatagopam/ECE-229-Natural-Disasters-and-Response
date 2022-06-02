@@ -103,16 +103,17 @@ def stacked_plot_deaths(df):
     return new_df
 
 
-def dis_analysis(nd_general):
+def dis_analysis(nd_general,voila=True):
     """
     nd_general: pandas DataFrame    
+    voila: bool
     Does natural disaster trends analysis using Holoviews Dynamic Map
     """
     assert isinstance(nd_general, pd.DataFrame) 
 
     colors = plt.cm.Spectral(np.linspace(0, 1, 9))[::-1]    
     
-    def make_bar_stacked(barType):
+    def make_bar_stacked(barType,):
         """
         barType: list
         Constructs holoviews bar natural for disaster trends analysis using Holoviews 
@@ -136,16 +137,23 @@ def dis_analysis(nd_general):
             bar_stacked= hv.Bars(df_stacked_bar_melt, kdims=["Year", "variable"], vdims=["value"])
             bar_stacked.opts(width=700, xlabel="year", title="Stacked chart for analysis", color="species", cmap="Category20", legend_position='right',stacked=True)
             return bar_stacked       
-    scale = 3/2+1/7
-    width=int(800*scale)
+    scale = 3/2
+    width=int(300*scale)*2
     height=int(250*scale)
     
     barTypes=['Disaster Occurence','Total Deaths', "Total Damages ('000 US$)"]
-
-    dmap = hv.DynamicMap(make_bar_stacked, kdims=['Bar_Type'])
+    select_damage = pn.widgets.Select(options=barTypes, name='Damage Type')
+    dmap = hv.DynamicMap(pn.bind(make_bar_stacked,barType=select_damage.param.value))
     dmap = dmap.redim.values(Bar_Type = barTypes)
 
     dmap.opts(framewise=True)
     dmap.opts(height=height, width=width, line_width=1.0, tools=['hover'], xrotation=70)
-    return dmap
+    description = pn.pane.Markdown('''
+    # What type of disasters are most common?
+    ''')
+    final_module = pn.Column(description,pn.Row(select_damage),dmap)
+    if voila:
+        return pn.ipywidget(final_module)
+    else:
+        return final_module
                        
