@@ -353,7 +353,10 @@ def predicted_earthquake_module(voila=True):
     description = pn.pane.Markdown('''
     ## Where will the next earthquake strike?
     
-    Let's look at a fine-grained example. There's no ultimate AI tool that can help us predict any disaster at any future time (yet!), but luckily we have models that can predict specific types of disasters to judge where we might next have to send aid. We use machine learning models to predict, based on past earthquake data, where future earthquakes are likely to occur. You can compare below with the historical and future earthquakes from the dropdown menu to see if these justifications make sense. 
+    Let's look at a fine-grained example. There's no ultimate AI tool that can help us predict any disaster at any future time (yet!), 
+    but luckily we have models that can predict specific types of disasters to judge where we might next have to send aid. We use 
+    machine learning models to predict, based on past earthquake data, where future earthquakes are likely to occur. You can compare 
+    below with the historical and future earthquakes from the dropdown menu to see if these justifications make sense. 
     ''')
     
     if voila:

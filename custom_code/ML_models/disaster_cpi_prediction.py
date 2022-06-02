@@ -249,7 +249,13 @@ def cpi_prediction_module(min_date = 1950,max_date =2050,voila=True):
     description = pn.pane.Markdown('''
     ## Where will disasters do the worst damage?
     
-    Let's take a minute to consider the CPI of a community: this is the *"Community Preparedness Index"*, a score given to communities based on how prepared they are to protect their children in the event of a disaster. Normally, this score would be manually calculated while considering a variety of subjective and objective factors: are there hospitals? Is there easy access to childcare? Are there emergency shelters and services within reach? Of course, trying to calculate this for every region in the world and updating it after each disaster is nearly impossible - but we could use the data we already have and machine learning to predict the CPI of communities around the globe to see who will be in dire need of aid if disaster were to hit them. 
+    Let's take a minute to consider the CPI of a community: this is the *"Community Preparedness Index"*, a score given 
+    to communities based on how prepared they are to protect their children in the event of a disaster. Normally, this 
+    score would be manually calculated while considering a variety of subjective and objective factors: are there 
+    hospitals? Is there easy access to childcare? Are there emergency shelters and services within reach? Of course, 
+    trying to calculate this for every region in the world and updating it after each disaster is nearly impossible - 
+    but we could use the data we already have and machine learning to predict the CPI of communities around the globe 
+    to see who will be in dire need of aid if disaster were to hit them. 
     ''')
     if voila:
         return pn.ipywidget(pn.Column(description,pn.Row(date_slider,month_date_slider,selector),widget_dmap))

@@ -85,8 +85,13 @@ def dis_analysis_(natural_disaster_df, voila=True):
     
     description = pn.pane.Markdown('''
     ## How are disasters distributed over time?
-
-    We can try looking at the same data, but from a different perspective. What if we filtered by year instead of by country? We could look at the overall trend of disaster occurrences, deaths, homeless, etc. over the past century. Like before, you can try filtering by year or by looking at the aforementioned factors that you want to plot. It's important to get a holistic understanding of how disasters affect people around the globe - it's only from beyond there that we can start to get a better understanding of how to help people rebuild and guard against future natural disasters.
+    
+    We can try looking at the same data, but from a different perspective. What if we filtered by year instead of by 
+    country? We could look at the overall trend of disaster occurrences, deaths, homeless, etc. over the past century. 
+    Like before, you can try filtering by year or by looking at the aforementioned factors that you want to plot. 
+    It's important to get a holistic understanding of how disasters affect people around the globe - it's only from 
+    beyond there that we can start to get a better understanding of how to help people rebuild and guard against 
+    future natural disasters.
     ''')
     if voila:
         return pn.ipywidget(pn.Column(description,pn.Row(dateslider,selector),widget_dmap))

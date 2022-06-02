@@ -169,16 +169,28 @@ def map_distribution_cases(natural_disaster_df, voila=True):
                     <font size="+20" face="Arial">humanitaire&trade; </font>
                 </th>
             </tr>
-        </table
+        </table>
     </center>
 
-    Now more than ever, communities afflicted by natural disasters around the globe need the help of donators like you to make a difference; we want to let you in on where your money is likely to provide the most assistance through a series of interactive and educational visuals. More now than ever, people are skeptical about where their money is going and whether it's effectively reaching people in need. We want to show you why your donations can help alleviate poverty, hunger, and homelessness in disaster-stricken areas as well as *where* it is going.
+    Now more than ever, communities afflicted by natural disasters around the globe need the help of donators like you to make a difference; 
+    we want to let you in on where your money is likely to provide the most assistance through a series of interactive and educational 
+    visuals. More now than ever, people are skeptical about where their money is going and whether it's effectively reaching people in need. 
+    We want to show you why your donations can help alleviate poverty, hunger, and homelessness in disaster-stricken areas as well as *where* 
+    it is going.
 
-    There are a number of tools we at **Humanitaire&trade;** use to justify distributing aid that your donations pay for. We use state-of-the-art statistical and machine learning methods to best define where certain natural disasters may take place in the future - and divest aid and response in anticipation. When looking at past data, we look filter disasters and their effects on two domains: geography and time period; the next few interactive visuals will give you a sense for how disasters occur worldwide and the severity across geographical regions and from certain time periods.
+    There are a number of tools we at **Humanitaire&trade;** use to justify distributing aid that your donations pay for. We use 
+    state-of-the-art statistical and machine learning methods to best define where certain natural disasters may take place in the future - 
+    and divest aid and response in anticipation. When looking at past data, we look filter disasters and their effects on two domains: 
+    geography and time period; the next few interactive visuals will give you a sense for how disasters occur worldwide and the severity 
+    across geographical regions and from certain time periods.
 
     ## Where are disasters concentrated?
 
-    Some countries unfortunately face more disasters than others, be it tornados, monsoons, wildfires, or earthquakes. Location has everything to do with how susceptible a community is to natural disasters. Not every nation has the same resources, so some countries are affected more heavily than others. You can try it out for yourself! Check out the global distribution of a number of disaster-related statistics, such as the counts of disasters, deaths, economic damages, reconstruction costs, etc. You can also filter down to a specific time period on a yearly basis. 
+    Some countries unfortunately face more disasters than others, be it tornados, monsoons, wildfires, or earthquakes. Location has everything 
+    to do with how susceptible a community is to natural disasters. Not every nation has the same resources, so some countries are affected 
+    more heavily than others. You can try it out for yourself! Check out the global distribution of a number of disaster-related statistics, 
+    such as the counts of disasters, deaths, economic damages, reconstruction costs, etc. You can also filter down to a specific time period 
+    on a yearly basis. 
         
     ''')
     if voila:
