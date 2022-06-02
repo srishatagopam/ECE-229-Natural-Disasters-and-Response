@@ -109,6 +109,7 @@ def stacked_plot_deaths(df):
     return new_df
 
 
+<<<<<<< HEAD
 def dis_analysis(df,voila=True):
     """
     Does natural disaster trends analysis using Holoviews Dynamic Map.
@@ -121,6 +122,13 @@ def dis_analysis(df,voila=True):
     
     **Returns: ipywidget.widget**
         a widget incorporating panel controlling parameters and a holoviews dynamic map
+=======
+def dis_analysis(nd_general,voila=True):
+    """
+    nd_general: pandas DataFrame    
+    voila: bool
+    Does natural disaster trends analysis using Holoviews Dynamic Map
+>>>>>>> 39e9ff7ee686605617e7067876eee7f230a235ee
     """
     assert isinstance(df, pd.DataFrame) 
 
