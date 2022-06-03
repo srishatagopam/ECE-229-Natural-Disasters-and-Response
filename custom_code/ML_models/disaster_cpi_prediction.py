@@ -231,7 +231,8 @@ def cpi_prediction_module(min_date = 1950,max_date =2050,voila=True):
             width=width,
             height=height,
             xrotation=70,
-            title="Which countries are affected the most?"
+            title="Which countries are affected the most?",
+            ylim=(45,55),
         )
         return img+bar
         pass
