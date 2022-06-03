@@ -337,19 +337,14 @@ def predicted_earthquake_module(voila=True):
     df_inter = df_output[df_output['mag']>0.01]
     
     wm, ax_future = plot_interactive_scattermap(df_inter, '', 8,point_color="teal",indep=True)
-    
-    def pred_earth_maps(selected):
-            if selected=="Future":
-                ax_future.opts(color="yellow")
-                ax_past.opts(color="red")
-            elif selected=="Historical":
-                ax_future.opts(color="red")
-                ax_past.opts(color="yellow")
-            return (wm*ax_past*ax_future)
+    ax_future.opts(color="yellow")
+    ax_past.opts(color="blue")
     selector_options =["Future","Historical"]
     selector = pn.widgets.Select(options=selector_options, name='Highlight Points')
-    widget_dmap = hv.DynamicMap(pn.bind(pred_earth_maps, selected=selector.param.value))
-    widget_dmap.opts(height=500,framewise=True,title="Predicted eathquake and historical average locations")
+#     widget_dmap = hv.DynamicMap(pn.bind(pred_earth_maps, selected=selector.param.value))
+    final_map = wm*ax_past*ax_future
+    final_map.opts(height=500,framewise=True,title="Predicted eathquake and historical average locations (past=blue, future=yellow)")
+#     widget_dmap.opts(height=500,framewise=True,title="Predicted eathquake and historical average locations")
     description = pn.pane.Markdown('''
     ## Where will the next earthquake strike?
     
@@ -360,7 +355,7 @@ def predicted_earthquake_module(voila=True):
     ''')
     
     if voila:
-        return pn.ipywidget(pn.Column(description,selector,widget_dmap))
+        return pn.ipywidget(pn.Column(description,final_map))
     else:
         return pn.Column(description,selector,widget_dmap)
 
