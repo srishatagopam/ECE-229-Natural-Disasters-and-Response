@@ -216,7 +216,7 @@ def predict_earthquake_model(df, df_live, days_out_to_predict = 7, max_depth=3, 
             'eval_metric': 'auc',
             'max_depth': max_depth,  # the maximum depth of each tree
             'eta': eta,  # the training step for each iteration
-            'silent':1
+#             'silent':1
             }  # logging mode - quiet}  # the number of classes that exist in this datset
 
     num_round = 1000  # the number of training iterations    
