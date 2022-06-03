@@ -157,7 +157,7 @@ def map_distribution_cases(natural_disaster_df, voila=True):
     
     description = pn.pane.Markdown('''
     <center>
-    <h1> Humanitaire&trade; Global Disaster Response <br> Why Your Donations Matter </br>  </h1>
+        <h1> Humanitaire&trade; Global Disaster Response <br> Why Your Donations Matter </br>  </h1>
     </center>
     <center>
         <table>
