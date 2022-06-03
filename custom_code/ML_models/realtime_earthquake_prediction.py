@@ -247,7 +247,7 @@ def predict_earthquake_model(df, df_live, days_out_to_predict = 7, max_depth=3, 
     days_new.sort()
     #days_new = days_new[0:7]
     #print(days_new)
-    assert len(days_new) == days_out_to_predict
+    # assert len(days_new) == days_out_to_predict
     days_new_interval = (df_live_set['date'] >= days_new[0]) & (df_live_set['date'] <= days_new[-1])
     df_output = df_live_set.loc[days_new_interval]
     
