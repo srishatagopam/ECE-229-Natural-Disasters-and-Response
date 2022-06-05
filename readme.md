@@ -72,6 +72,12 @@ pip install holoviews
 pip install bokeh
 ```
 
+* xgboost
+
+```
+pip install xgboost
+```
+
 <h2> Visualizations</h2>
 [Visualization Notebook](https://github.com/srishatagopam/ECE-229-Natural-Disasters-and-Response/blob/main/Group7_Final_notebook.ipynb)
 
