@@ -1,53 +1,33 @@
-<h1>Exploratory Analysis of Natural Disasters</h1>
+<h1>Natural Disaster Analysis & Response</h1>
 
-![alt text](image/bubble.png)
+![First part of Dashboard](image/Visualization_Header.png)
+
 
 <h2>Team Members</h2>
 
-By Jaya Konda, Pujika Kumar, Gaopo Huang, Jiawei Zheng, Andy Liu
+By Pujika Kumar, Ruining Feng, Cameron Lewis, Emily Park, Sri Shatagopam, Yue Wu, Siyuan Zhang
 
-<h2>Problem </h2>
 
-Can natural disasters increase public awareness of climate change?
-Is there any trend in natural disaster incidents and casualties from natural disasters over the years? 
-How impactful is the media interest of climate change over the natural disaster incidents?
+<h2>Question to Investigate</h2>
 
-<h2> Motivation </h2>
-Our primary motivation was to analyse the natural disasters to find if their occurrence or the deaths caused by them have stirred up any awareness about the climate change. Along the way, we have tried to draw important insights about the trends of natural disasters, and their impact on human lives.
+We will be investigating the consequences of natural disasters both on a regional and global scale in terms of human and economic impact (i.e. from deaths and homeless statistics to economic damage) based on the geographical origin, timeframe of the disaster, etc.
+
+
+<h2>User Story</h2>
+
+As a non-profit organization we want our end users/donators to understand the importance of our work. Our goal is to convince English speaking potential donors to donate to our company so we can continue our company’s mission: “help others through providing humanitarian aid.” 
+Through our dashboard we can educate potential donors on the magnitude of damage that natural disasters can cause. Utilizing interactive visuals provide a digestible way to learn the impact of natural disasters around the world such as the number of deaths, and monetary damage.
+
 
 <h2>Dataset</h2>
 
-Natural Disaster incident over years ( https://www.kaggle.com/brsdincer/all-natural-disasters-19002021-eosdis). This dataset contains 2 csv files, with each containing 45 columns having information about year, disaster type, country, etc. 
+<a href="https://www.emdat.be/">EM-DAT – The International Disaster Database<a>
+Dataset Description: EM-DAT is a catalog of disasters listing detailed information on natural disasters: droughts (famines), earthquakes, epidemics, extreme temperatures, floods, insect infestations, mass movement (dry & wet), storms, volcanos, and wildfires. There is also a data section on technological disasters.
 
-Media (specifically TV news) interest in climate change over years: (https://blog.gdeltproject.org/a-new-dataset-for-exploring-climate-change-narratives-on-television-news-2009-2020/). This data contains 418 csv files, with each containing information about TV news reported on these natural disasters. 
 
-Capital over gdp. This dataset contains columns and 19879 rows
-(https://data.worldbank.org/indicator/NY.GDP.PCAP.PP.CD)
-
-<h2>File Structure</h2>
-
-    .
-    ├── Code                                # .py files that contains our code to generate the graph
-    │   ├──__init__.py
-    │   ├──bubble.py
-    │   ├──major_disaster_analysis.py
-    │   ├──natural_disaster_climate_news_analysis.py
-    │   ├──pies.py  
-    │   ├──stacked_decadal.py
-    │   └──stacked_plots.py  
-    ├── dataset				                # all the datasets we used
-    │   ├── TelevisionNews
-    |   |   └──*.CSV
-    │   ├──1900-2021_DISASTERS.xlsx - emdat data.csv
-    │   ├──1970-2021_DISASTERS.xlsx - emdat data.csv
-    │   └──gdp_per_capita.csv
-    ├── image                               # the graph we generated
-    │   └── bubble.png
-    │   
-    ├── Final presentation PPT.pdf          # pdf file for our presentation
-    ├── Final_project_code.ipynb		    # notebook to display all our visualizations
-    ├── readme.md							# readme file
-    └──.gitignore
+Geographical coverage: Global – country and regional level (primarily cross-country data set, but also contains the name of the sub-national regions affected by disasters)
+Time span: 1900 onwards.
+Interactive visuals 
 
 <h2>Required Packages</h2>
 
@@ -63,26 +43,15 @@ pip install pandas
 pip install numpy
 ```
 
-* matplotlib
-
-```
-pip install matplotlib
-```
-
 * geopandas
 
 ```
 pip install geopandas
 ```
 
-* seaborn
 
-```
-pip install seaborn
-```
-
-<h2> Visualization </h2>
-[Visualization Notebook](https://github.com/js-konda/ece-143/blob/main/Final_project_code.ipynb)
+<h2> Visualizations</h2>
+[Visualization Notebook](https://github.com/srishatagopam/ECE-229-Natural-Disasters-and-Response/blob/main/Group7_Final_notebook.ipynb)
 
 <h2> AWS guide </h2>
 
@@ -94,4 +63,18 @@ pip install seaborn
 ssh -i ece229.pem -L 8866:localhost:8866 ec2-user@54.215.248.243 -v -N
 ```
 
+
 3.Open localhost:8866 on your browser
+
+<h2> Screenshots of Visualization Notebook</h2>
+
+![First part of Dashboard](image/Visualization_Header.png)
+![Second part of Dashboard](image/Disaster_distribution.png)
+![Third part of Dashboard](image/Time_analysis_disasters.png)
+![Fourth part of Dashboard](image/CPI_prediction.png)
+![Fifth part of Dashboard](image/earthquake_prediction.png)
+
+
+<h2>Citations</h2>
+This project was built off of the ECE 143 project linked here: https://github.com/js-konda/NaturalDisastersEDA
+One of the authors of this project also wrote the ECE 143 project: Pujika Kumar.
