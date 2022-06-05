@@ -48,7 +48,29 @@ pip install numpy
 ```
 pip install geopandas
 ```
+  
+* geoviews
 
+```
+pip install geoviews
+```
+* voila
+
+```
+pip install voila
+```
+  
+* holoviews
+
+```
+pip install holoviews
+```
+  
+* bokeh
+
+```
+pip install bokeh
+```
 
 <h2> Visualizations</h2>
 [Visualization Notebook](https://github.com/srishatagopam/ECE-229-Natural-Disasters-and-Response/blob/main/Group7_Final_notebook.ipynb)
