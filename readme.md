@@ -78,6 +78,16 @@ pip install bokeh
 pip install xgboost
 ```
 
+<h2> Michine Learning Models </h2>
+
+1.
+  Dataset:
+  Model:
+
+2.
+  Dataset:
+  Model:
+
 <h2> Visualizations</h2>
 [Visualization Notebook](https://github.com/srishatagopam/ECE-229-Natural-Disasters-and-Response/blob/main/Group7_Final_notebook.ipynb)
 
