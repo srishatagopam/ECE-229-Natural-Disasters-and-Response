@@ -78,11 +78,18 @@ pip install bokeh
 pip install xgboost
 ```
 
-<h2> Michine Learning Models </h2>
+<h2> Machine Learning Models </h2>
 
-1.
-  Dataset:
-  Model:
+1. Future CPI Prediction
+  Make a CPI prediction of different disasters in the future.
+  
+  `Disaster Type = ['Earthquake', 'Extreme temperature', 'Flood', 'Landslide', 'Storm', 'Wildfire'] `
+  
+  Prediction Obejective: CPI(Community Preparedness Index) Score of how prepared a community is to aid children in a disaster; computed across multiple sectors (hospitals, emergency shelters, child care, etc.).
+  
+  Dataset: <a href="https://www.emdat.be/">EM-DAT – The International Disaster Database<a>
+  
+  Model: xgboost
 
 2.
   Dataset:
