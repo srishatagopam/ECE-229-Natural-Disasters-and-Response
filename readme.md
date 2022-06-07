@@ -102,6 +102,12 @@ pip install xgboost
   Model: xgboost
   
   `objective = reg: binary:logistic` logistic regression for binary classification, output probability(magnitude > 2.5)
+ 
+3. Future Work
+  
+  Dataset: Get more data OR use MICE to the missings in EM-DAT dataset(too many missings affect the model performance).
+  
+  Models: Test with data-insensitive methods (e.g. Bayesian networks) and neural networks.
 
 <h2> Visualizations</h2>
 [Visualization Notebook](https://github.com/srishatagopam/ECE-229-Natural-Disasters-and-Response/blob/main/Group7_Final_notebook.ipynb)
