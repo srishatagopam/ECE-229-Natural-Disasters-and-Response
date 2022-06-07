@@ -83,17 +83,25 @@ pip install xgboost
 1. Future CPI Prediction
   Make a CPI prediction of different disasters in the future.
   
-  `Disaster Type = ['Earthquake', 'Extreme temperature', 'Flood', 'Landslide', 'Storm', 'Wildfire'] `
-  
   Prediction Obejective: CPI(Community Preparedness Index) Score of how prepared a community is to aid children in a disaster; computed across multiple sectors (hospitals, emergency shelters, child care, etc.).
   
   Dataset: <a href="https://www.emdat.be/">EM-DAT – The International Disaster Database<a>
   
   Model: xgboost
+  
+  `objective = reg:squarederror` regression with squared loss
 
-2.
-  Dataset:
-  Model:
+2. Earthquake Location Prediction in Next 7 Days
+  
+  Make a earhtquake location prediction in next 7 days.
+  
+  Prediction Obejective: Probability of earthquake(magnitude > 2.5) occurrence.
+  
+  Dataset: <a href="https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.csv">USGS Earthquake<a>
+  
+  Model: xgboost
+  
+  `objective = reg: binary:logistic` logistic regression for binary classification, output probability(magnitude > 2.5)
 
 <h2> Visualizations</h2>
 [Visualization Notebook](https://github.com/srishatagopam/ECE-229-Natural-Disasters-and-Response/blob/main/Group7_Final_notebook.ipynb)
