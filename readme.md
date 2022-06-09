@@ -124,7 +124,54 @@ Testing done using PyTest, coverage report created using coverage. Preview avail
 
 1.EC2 setup
 
-Create an EC2 instance on Amazon AWS. The "t2 micro" tier is enough for this project and it is free. We add a security group to our instance, then save the "pem" file to the local machine. You can then connect to the ec2 instance and install the above packages through pip or miniconda. 
+Created an EC2 instance on Amazon AWS, t2 micro is enough for this project and it's free trial. We also need add a security group to our instance, and save the pem file to your local machine. Once that done, you can connect to the ec2 instance and install package throught pip or miniconda. 
+  
+* pandas
+
+```
+conda install pandas
+```
+
+* numpy
+
+```
+conda install numpy
+```
+
+* geopandas
+
+```
+conda install geopandas
+```
+  
+* geoviews
+
+```
+conda install geoviews
+```
+* voila
+
+```
+conda install voila
+```
+  
+* holoviews
+
+```
+conda install holoviews
+```
+  
+* bokeh
+
+```
+conda install bokeh
+```
+
+* xgboost
+
+```
+conda install xgboost
+```
 
 2.Git clone the repository from github to EC2 with:
 
@@ -132,23 +179,25 @@ Create an EC2 instance on Amazon AWS. The "t2 micro" tier is enough for this pro
 git clone https://github.com/srishatagopam/ECE-229-Natural-Disasters-and-Response.git
 ```
   
-3.Use voila to run the jupyter notebook on AWS:
+3.Used voila to run the file you want to render as a web page on AWS:
   
 ```
 voila Group7_Final_notebook.ipynb
 ```
 
+Then you should see a web page on your browser localhost.
+
 4.Connection guide
 
-How to connect to our EC2 instance:
+How to connect to EC2 instance:
 
 ```
 ssh ec2-user@54.215.248.243
 ```
   
-How to open our jupyter notebook rendered by voila: 
+How to open jupyter notebook rendered by voila: 
 
-Download ece229.pem.
+Create a private key .pem file, such as the one in our repository
 
 Save this file to a local directory, run the following command:
 
