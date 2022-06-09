@@ -122,16 +122,88 @@ Testing done using PyTest, coverage report created using coverage. Preview avail
 
 <h2> AWS guide </h2>
 
-1.Download ece229.pem.
+1.EC2 setup
 
-2.Save this file to a local directory, run the following command:
+Created an EC2 instance on Amazon AWS, installed conda on EC2, used conda to install all required packages:
+  
+* pandas
+
+```
+conda install pandas
+```
+
+* numpy
+
+```
+conda install numpy
+```
+
+* geopandas
+
+```
+conda install geopandas
+```
+  
+* geoviews
+
+```
+conda install geoviews
+```
+* voila
+
+```
+conda install voila
+```
+  
+* holoviews
+
+```
+conda install holoviews
+```
+  
+* bokeh
+
+```
+conda install bokeh
+```
+
+* xgboost
+
+```
+conda install xgboost
+```
+
+2.Git clone the repository from github to EC2 with:
+
+```
+git clone https://github.com/srishatagopam/ECE-229-Natural-Disasters-and-Response.git
+```
+  
+3.Used voila to run the jupyter notebook on AWS:
+  
+```
+voila Group7_Final_notebook.ipynb
+```
+
+4.Connection guide
+
+How to connect to our EC2 instance:
+
+```
+ssh ec2-user@54.215.248.243
+```
+  
+How to open our jupyter notebook rendered by voila: 
+
+Download ece229.pem.
+
+Save this file to a local directory, run the following command:
 
 ```
 ssh -i ece229.pem -L 8866:localhost:8866 ec2-user@54.215.248.243 -v -N
 ```
 
-
-3.Open localhost:8866 on your browser
+Open localhost:8866 on your browser
 
 <h2> Screenshots of Visualization Notebook</h2>
 
