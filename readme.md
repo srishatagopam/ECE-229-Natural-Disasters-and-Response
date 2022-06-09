@@ -124,54 +124,7 @@ Testing done using PyTest, coverage report created using coverage. Preview avail
 
 1.EC2 setup
 
-Created an EC2 instance on Amazon AWS, t2 micro is enough for this project and it's free trial. We also need add a security group to our instance, and save the pem file to your local machine. Once that done, you can connect to the ec2 instance and install package throught pip or miniconda. 
-  
-* pandas
-
-```
-conda install pandas
-```
-
-* numpy
-
-```
-conda install numpy
-```
-
-* geopandas
-
-```
-conda install geopandas
-```
-  
-* geoviews
-
-```
-conda install geoviews
-```
-* voila
-
-```
-conda install voila
-```
-  
-* holoviews
-
-```
-conda install holoviews
-```
-  
-* bokeh
-
-```
-conda install bokeh
-```
-
-* xgboost
-
-```
-conda install xgboost
-```
+Create an EC2 instance on Amazon AWS. The "t2 micro" tier is enough for this project and it is free. We add a security group to our instance, then save the "pem" file to the local machine. You can then connect to the ec2 instance and install the above packages through pip or miniconda. 
 
 2.Git clone the repository from github to EC2 with:
 
@@ -179,7 +132,7 @@ conda install xgboost
 git clone https://github.com/srishatagopam/ECE-229-Natural-Disasters-and-Response.git
 ```
   
-3.Used voila to run the jupyter notebook on AWS:
+3.Use voila to run the jupyter notebook on AWS:
   
 ```
 voila Group7_Final_notebook.ipynb
