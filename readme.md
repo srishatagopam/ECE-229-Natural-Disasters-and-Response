@@ -124,7 +124,7 @@ Testing done using PyTest, coverage report created using coverage. Preview avail
 
 1.EC2 setup
 
-Created an EC2 instance on Amazon AWS, installed conda on EC2, used conda to install all required packages:
+Created an EC2 instance on Amazon AWS, t2 micro is enough for this project and it's free trial. We also need add a security group to our instance, and save the pem file to your local machine. Once that done, you can connect to the ec2 instance and install package throught pip or miniconda. 
   
 * pandas
 
